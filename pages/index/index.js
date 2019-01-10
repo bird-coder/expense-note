@@ -20,8 +20,22 @@ Page({
     if (this.data.trainning) this.setData({trainning: false})
     else this.setData({ trainning: true })
   },
-  increaseCount: function() {
-    if (this.data.trainning) this.setData({ total: this.data.total + 1 })
+  increaseCount: function(num) {
+    let type = parseInt(num.substr(0, 2), 16)
+    let value = parseInt(num.substr(2), 16)
+    //大端转小端
+    value = ('0000' + ((value << 8) | (value >> 8)).toString(16)).slice(-4)
+    let count = parseInt(value)
+    switch(type){
+      case 0x01: 
+        console.log("踏步机计数");break;
+      case 0x02: 
+        console.log("健身自行车");break;
+      case 0x03: 
+        console.log("卧推器材");break;
+      default: console.log("器材类型错误"); return
+    }
+    if (this.data.trainning) this.setData({ total: this.data.total + count })
   },
   onLoad: function () {
     
@@ -143,9 +157,8 @@ Page({
       deviceId,
       success: (res) => {
         for (let i = 0; i < res.services.length; i++) {
-          if (res.services[i].uuid.indexOf('ff00') != -1) {
-            setTimeout(
-              this.getBLEDeviceCharacteristics(deviceId, res.services[i].uuid), 300)
+          if (res.services[i].uuid.indexOf('ff00') != -1 || res.services[i].uuid.indexOf('FF00') != -1) {
+            this.getBLEDeviceCharacteristics(deviceId, res.services[i].uuid)
             return
           }
         }
@@ -162,29 +175,28 @@ Page({
         console.log('getBLEDeviceCharacteristics success', res.characteristics)
         for (let i = 0; i < res.characteristics.length; i++) {
           let item = res.characteristics[i]
-          if (item.uuid.indexOf('ff01') == -1) continue
-          if (item.properties.read) {
-            wx.readBLECharacteristicValue({
-              deviceId,
-              serviceId,
-              characteristicId: item.uuid,
-              success: function (res) {
-                console.log("readBLECharacteristicValue")
-                console.log(res)
-                if (res) that.increaseCount()
-              }
-            })
-          }
-          if (item.properties.write) {
-            console.log('can write...')
-            this.setData({
-              canWrite: true
-            })
-            this._deviceId = deviceId
-            this._serviceId = serviceId
-            this._characteristicId = item.uuid
-            this.writeBLECharacteristicValue()
-          }
+          if (item.uuid.indexOf('ff01') == -1 && item.uuid.indexOf('FF01') == -1) continue
+          // if (item.properties.read) {
+          //   wx.readBLECharacteristicValue({
+          //     deviceId,
+          //     serviceId,
+          //     characteristicId: item.uuid,
+          //     success: function (res) {
+          //       console.log("readBLECharacteristicValue")
+          //       console.log(res)
+          //     }
+          //   })
+          // }
+          // if (item.properties.write) {
+          //   console.log('can write...')
+          //   this.setData({
+          //     canWrite: true
+          //   })
+          //   this._deviceId = deviceId
+          //   this._serviceId = serviceId
+          //   this._characteristicId = item.uuid
+          //   this.writeBLECharacteristicValue()
+          // }
           if (item.properties.notify || item.properties.indicate) {
             //订阅特征值变化
             wx.notifyBLECharacteristicValueChange({
@@ -192,6 +204,12 @@ Page({
               serviceId,
               characteristicId: item.uuid,
               state: true,
+              success: function(res){
+                console.log(res)
+              },
+              fail: function(res){
+                console.log(res)
+              }
             })
           }
         }
@@ -202,47 +220,31 @@ Page({
     })
     // 操作之前先监听，保证第一时间获取数据
     wx.onBLECharacteristicValueChange((characteristic) => {
-      console.log(utils.ab2hex(characteristic.value))
-      const idx = utils.inArray(this.data.chs, 'uuid', characteristic.characteristicId)
-      const data = {}
-      if (idx === -1) {
-        data[`chs[${this.data.chs.length}]`] = {
-          uuid: characteristic.characteristicId,
-          value: utils.ab2hex(characteristic.value)
-        }
-      } else {
-        data[`chs[${idx}]`] = {
-          uuid: characteristic.characteristicId,
-          value: utils.ab2hex(characteristic.value)
-        }
-      }
-      // data[`chs[${this.data.chs.length}]`] = {
-      //   uuid: characteristic.characteristicId,
-      //   value: utils.ab2hex(characteristic.value)
-      // }
-      this.setData(data)
+      let count = utils.ab2hex(characteristic.value)
+      console.log(count)
+      if (count) that.increaseCount(count)
     })
   },
   //向蓝牙设备特征值写入二进制数据
-  writeBLECharacteristicValue() {
-    // 向蓝牙设备发送一个0x00的16进制数据
-    let buffer = new ArrayBuffer(1)
-    let dataView = new DataView(buffer)
-    dataView.setUint8(0, Math.random() * 255 | 0)
-    console.log("发送的数据：")
-    for (let i = 0; i < dataView.byteLength; i++) {
-      console.log("0x" + dataView.getUint8(i).toString(16))
-    }
-    wx.writeBLECharacteristicValue({
-      deviceId: this._deviceId,
-      serviceId: this._deviceId,
-      characteristicId: this._characteristicId,
-      value: buffer,
-      success: function (res) {
-        console.log("success 指令发送成功！")
-      }
-    })
-  },
+  // writeBLECharacteristicValue() {
+  //   // 向蓝牙设备发送一个0x00的16进制数据
+  //   let buffer = new ArrayBuffer(1)
+  //   let dataView = new DataView(buffer)
+  //   dataView.setUint8(0, Math.random() * 255 | 0)
+  //   console.log("发送的数据：")
+  //   for (let i = 0; i < dataView.byteLength; i++) {
+  //     console.log("0x" + dataView.getUint8(i).toString(16))
+  //   }
+  //   wx.writeBLECharacteristicValue({
+  //     deviceId: this._deviceId,
+  //     serviceId: this._deviceId,
+  //     characteristicId: this._characteristicId,
+  //     value: buffer,
+  //     success: function (res) {
+  //       console.log("success 指令发送成功！")
+  //     }
+  //   })
+  // },
   //断开蓝牙连接
   closeBLEConnection() {
     wx.closeBLEConnection({
