@@ -27,6 +27,10 @@
   position: absolute;
   z-index: -1;
 }
+.item_hover {
+  box-sizing: border-box;
+  border: 1rpx solid #ccc;
+}
 .userinfo {
   display: flex;
   flex-direction: column;

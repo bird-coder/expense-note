@@ -15,7 +15,8 @@
   <view wx:for='{{options}}' wx:key='index'
     data-id='{{index}}'
     bindtap='selectItem'
-    class='item'>
+    class='item'
+    hover-class='item_hover'>
     <image src='{{item.img}}' mode='cover'></image>
     <view>
     <text class='title'>{{item.name}}</text>

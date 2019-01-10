@@ -1,4 +1,5 @@
 /**app.wxss**/
+@import "./iconfont.wxss";
 page {
   font: normal 30rpx/1.68 -apple-system-font,
           'Helvetica Neue',
