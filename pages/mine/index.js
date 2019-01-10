@@ -12,7 +12,7 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     options: [
       { 'name': '周报', 'ename': 'weekly', 'img': '../../images/weekly.jpg', 'url': './weekly/weekly' },
-      { 'name': '里程碑', 'ename': 'milestone', 'img': '../../images/cover.jpg', 'url': './milestone/milestone' },
+      { 'name': '里程碑', 'ename': 'milestone', 'img': '../../images/milestone.jpg', 'url': './milestone/milestone' },
       { 'name': '训练计划', 'ename': 'program', 'img': '../../images/program.jpg', 'url': './program/program' },
       { 'name': '建议', 'ename': 'advise', 'img': '../../images/advise.jpg', 'url': './advise/advise' },
       { 'name': '反馈', 'ename': 'feedback', 'img': '../../images/feedback.jpg', 'url': './feedback/feedback' },

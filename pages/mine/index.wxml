@@ -17,8 +17,10 @@
     bindtap='selectItem'
     class='item'>
     <image src='{{item.img}}' mode='cover'></image>
-    <view>{{item.name}}</view>
-    <view>{{item.ename}}</view>
+    <view>
+    <text class='title'>{{item.name}}</text>
+    <text>{{item.ename}}</text>
+    </view>
   </view>
   
 </view>
