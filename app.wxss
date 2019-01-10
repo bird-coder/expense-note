@@ -1,0 +1,16 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  width: 100%;
+} 
+.spacing_view {
+  height: 14px;
+  background-color: #f3f3f3;
+}
+.bg {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+  opacity: 0.9;
+}

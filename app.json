@@ -1,0 +1,39 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/mine/index",
+    "pages/machine/index",
+    "pages/mine/weekly/weekly",
+    "pages/mine/milestone/milestone",
+    "pages/mine/advise/advise",
+    "pages/mine/config/config",
+    "pages/mine/feedback/feedback",
+    "pages/mine/program/program"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "报销笔记",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#848487",
+    "borderStyle": "white",
+    "selectedColor": "#2c6e60",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/game.png",
+        "selectedIconPath": "images/game_on.png"
+      },
+      {
+        "pagePath": "pages/mine/index",
+        "text": "我的",
+        "iconPath": "images/mygame.png",
+        "selectedIconPath": "images/mygame_on.png"
+      }
+    ]
+  }
+}

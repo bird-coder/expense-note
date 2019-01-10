@@ -1,0 +1,47 @@
+/* pages/machine/index.wxss */
+.devices_summary {
+  padding: 10px;
+  font-size: 16px;
+}
+.devices_summary text {
+  color: #fff;
+  font-weight: bold;
+}
+.device_list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 300px;
+  width: auto;
+  margin: 5px;
+}
+.device_item {
+  margin-bottom: 1px;
+  padding: 10px;
+  color: #eee;
+  position: relative;
+  overflow: hidden;
+  font-size: 10px;
+  text-align: right;
+  min-height: 100px;
+}
+.device_item image {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: -20%;
+  z-index: -1;
+}
+.device_item .title {
+  display: inline-block;
+  padding: 15px;
+  background-color: rgba(204, 204, 204, 0.5);
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  width: 30%;
+}
+.device_item_hover {
+  border: 1px solid #ccc;
+}

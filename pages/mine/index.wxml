@@ -1,0 +1,25 @@
+<!--pages/mine/index.wxml-->
+<view>
+<view>
+  <view class="userinfo">
+    <image class='bg' src='../../images/mine.jpg' mode='aspectFill'></image>
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="userinfo-avatar"> <image src='../../images/user-avatar.png' mode='aspectFill'></image> </button>
+    
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+</view>
+<view class='list'>
+  <view wx:for='{{options}}' wx:key='index'
+    data-id='{{index}}'
+    bindtap='selectItem'
+    class='item'>
+    <image src='{{item.img}}' mode='cover'></image>
+    <view>{{item.name}}</view>
+    <view>{{item.ename}}</view>
+  </view>
+  
+</view>
+</view>

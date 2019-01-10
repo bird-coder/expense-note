@@ -1,0 +1,58 @@
+/**index.wxss**/
+.body {
+  padding-top: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.start_btn {
+  width: 300rpx;
+  height: 300rpx;
+  border: 1px solid rgb(247, 144, 76);
+  border-radius: 50%;
+  text-align: center;
+  line-height: 300rpx;
+  color: #ddd;
+  font-weight: bold;
+  overflow: visible;
+  background: linear-gradient(left top, rgb(247, 56, 8), rgb(245, 81, 16), #ddd);
+  background: -moz-linear-gradient(left top, rgb(247, 56, 8), rgb(245, 81, 16), #ddd);
+  background: -webkit-linear-gradient(left top, rgb(247, 56, 8), rgb(245, 81, 16), #ddd);
+  background: -o-linear-gradient(left top, rgb(247, 56, 8), rgb(245, 81, 16), #ddd);
+}
+.start_btn::after {
+  border: none;
+}
+.start_btn text {
+  display: inline-block;
+  width: 100px;
+  font-size: 50px;
+  font-weight: bold;
+}
+.clear_all {
+  width: 80px;
+  font-size: 12px;
+}
+.info {
+  padding: 15px;
+  font-size: 14px;
+  color: #fff;
+  font-weight: bold;
+}
+.share-button {
+  position: absolute;
+  top: 80%;
+  left: -30rpx;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 3;
+}
+.share-button::after {
+  border: none;
+}
+.share-button image {
+  position: relative;
+  width: 232rpx;
+  height: 86rpx;
+  top: 20rpx;
+}

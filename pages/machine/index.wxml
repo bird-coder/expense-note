@@ -1,0 +1,19 @@
+<!--pages/machine/index.wxml-->
+<view>
+<image class='bg' src='../../images/bg.jpg' mode='aspectFill' />
+<view class="devices_summary">已发现 <text>{{devices.length}}</text> 个外围设备：</view>
+<scroll-view class='device_list' scroll-y scroll-with-animation>
+  <view wx:for="{{devices}}" wx:key="index"
+    data-device-id='{{item.deviceId}}'
+    data-name='{{item.name || item.localName}}'
+    bindtap='createBLEConnection'
+    class="device_item"
+    hover-class="device_item_hover">
+      <image src='../../images/running.jpg' />
+      <view class='title'><text>{{item.name}}</text></view>
+      <view>信号强度: {{item.RSSI}}dBm ({{utils.max(0, item.RSSI + 100)}}%)</view>
+      <view>UUID: {{item.deviceId}}</view>
+      <view>Service数量: {{utils.len(item.advertisServiceUUIDs)}}</view>
+  </view>
+</scroll-view>
+</view>
