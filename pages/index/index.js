@@ -143,8 +143,9 @@ Page({
       deviceId,
       success: (res) => {
         for (let i = 0; i < res.services.length; i++) {
-          if (res.services[i].isPrimary) {
-            this.getBLEDeviceCharacteristics(deviceId, res.services[i].uuid)
+          if (res.services[i].uuid.indexOf('ff00') != -1) {
+            setTimeout(
+              this.getBLEDeviceCharacteristics(deviceId, res.services[i].uuid), 300)
             return
           }
         }
@@ -161,6 +162,7 @@ Page({
         console.log('getBLEDeviceCharacteristics success', res.characteristics)
         for (let i = 0; i < res.characteristics.length; i++) {
           let item = res.characteristics[i]
+          if (item.uuid.indexOf('ff01') == -1) continue
           if (item.properties.read) {
             wx.readBLECharacteristicValue({
               deviceId,
