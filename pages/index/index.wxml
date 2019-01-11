@@ -8,7 +8,7 @@
 <view class='info' wx:if="{{connected}}">{{trainning ? '再次点击按钮暂停👆' : '点击按钮继续👆'}}</view>
 <view class='info' wx:elif="{{searching}}">点击按钮可暂停👆</view>
 <view class='info' wx:else>点击按钮开始👆</view>
-<button class='clear_all' bindtap="closeBluetoothAdapter">全部清除</button>
+<button class='clear_all' hover-class='clear_all_hover' bindtap="closeBluetoothAdapter"><view class='shine'></view>全部清除</button>
 <button class='share-button' open-type="share">
   <image animation='{{shareAnimation}}' src='../../images/share.png' />
 </button>

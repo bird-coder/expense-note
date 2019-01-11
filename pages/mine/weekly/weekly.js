@@ -1,4 +1,5 @@
 // pages/mine/weekly/weekly.js
+const wxCharts = require('../../../utils/wxcharts-min.js')
 Page({
 
   /**
@@ -12,7 +13,32 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let windowWidth = 320
+    let res = wx.getSystemInfoSync()
+    if (res && res.windowWidth) windowWidth = res.windowWidth
+    new wxCharts({
+      canvasId: 'pieCanvas',
+      type: 'pie',
+      series: [{
+        name: 'cat1',
+        data: 50,
+      }, {
+        name: 'cat2',
+        data: 30,
+      }, {
+        name: 'cat3',
+        data: 1,
+      }, {
+        name: 'cat4',
+        data: 1,
+      }, {
+        name: 'cat5',
+        data: 46,
+      }],
+      width: windowWidth,
+      height: 300,
+      dataLabel: true
+    });
   },
 
   /**

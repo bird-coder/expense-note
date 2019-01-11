@@ -14,12 +14,18 @@
   text-align: center;
   line-height: 300rpx;
   color: #ddd;
+  text-shadow: rgba(0,0,0,0.9) 0px 1px 2px;
   font-weight: bold;
   overflow: visible;
   background: linear-gradient(left top, rgb(247, 56, 8), rgb(245, 81, 16), #ddd);
   background: -moz-linear-gradient(left top, rgb(247, 56, 8), rgb(245, 81, 16), #ddd);
   background: -webkit-linear-gradient(left top, rgb(247, 56, 8), rgb(245, 81, 16), #ddd);
   background: -o-linear-gradient(left top, rgb(247, 56, 8), rgb(245, 81, 16), #ddd);
+  box-shadow: rgba(0,0,0,0.5) 0px 2px 5px, 
+    inset rgba(255,255,255,0.25) 0px 1px 0px, 
+    inset rgba(255,255,255,0.03) 0px 20px 0px, 
+    inset rgba(247, 144, 76,0.15) 0px -20px 20px, 
+    inset rgba(255,255,255,0.05) 0px 20px 20px;
 }
 .start_btn::after {
   border: none;
@@ -33,12 +39,41 @@
 .clear_all {
   width: 80px;
   font-size: 12px;
+  background-color: #3a617e;
+  border: 0.5px solid #242424;
+  color: #fff;
+  opacity: 0.9;
+  text-shadow: rgba(0,0,0,0.9) 0px 1px 2px;
+  box-shadow: rgba(0,0,0,0.5) 0px 2px 5px, 
+    inset rgba(255,255,255,0.25) 0px 1px 0px, 
+    inset rgba(255,255,255,0.03) 0px 20px 0px, 
+    inset rgba(0, 0, 0,0.15) 0px -20px 20px, 
+    inset rgba(255,255,255,0.05) 0px 20px 20px;
+}
+.clear_all_hover {
+  box-shadow: rgba(255,255,255,0.5) 0px 1px 0px, 
+    inset rgba(255,255,255,0.25) 0px 1px 0px, 
+    inset rgba(255,255,255,0.03) 0px 20px 0px, 
+    inset rgba(0,0,0,0.15) 0px -20px 20px, 
+    inset rgba(255,255,255,0.05) 0px 20px 20px;
+}
+.shine {
+  display: block;
+  position: relative;
+  height: 1px;
+  left: -12px;
+  background: linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,0) 100%);
+  background: -o-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,0) 100%);
+  background: -moz-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,0) 100%);
+  background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,0) 100%);
+  box-shadow: rgba(255, 255, 255, 0.2) 0px 1px 5px;
 }
 .info {
   padding: 15px;
   font-size: 14px;
   color: #fff;
   font-weight: bold;
+  text-shadow: rgba(0,0,0,0.9) 0px 1px 2px;
 }
 .share-button {
   position: absolute;

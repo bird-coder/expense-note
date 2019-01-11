@@ -1,2 +1,4 @@
 <!--pages/mine/weekly/weekly.wxml-->
-<text>pages/mine/weekly/weekly.wxml</text>
+<view>
+<canvas canvas-id="pieCanvas" disable-scroll="true" class="canvas"></canvas>
+</view>
