@@ -1,7 +1,7 @@
 /* pages/mine/milestone/milestone.wxss */
 .userinfo {
   position: relative;
-  min-height: 400rpx;
+  min-height: 300rpx;
 }
 .header {
   font-size: 20px;
