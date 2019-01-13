@@ -1,1 +1,19 @@
 /* pages/mine/feedback/feedback.wxss */
+.title {
+  background-color: #ccc;
+  font-size: 16px;
+  color: #fff;
+}
+.content {
+  width: 85%;
+  min-height: 400rpx;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+  font-size: 14px;
+}
+.submit {
+  width: 60%;
+  background-color: rgb(46, 204, 46);
+}

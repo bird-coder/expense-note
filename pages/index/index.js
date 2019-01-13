@@ -82,6 +82,23 @@ Page({
         increaseAnimation: increaseAnimation.export()
       })
     }.bind(that), 500)
+    var fingerAnimation = wx.createAnimation({
+      duration: 500,
+      timingFunction: 'ease-inout',
+    })
+    var finger = true
+    setInterval(function () {
+      if (finger) {
+        fingerAnimation.translateY(10).step()
+        finger = !finger
+      } else {
+        fingerAnimation.translateY(0).step()
+        finger = !finger
+      }
+      that.setData({
+        fingerAnimation: fingerAnimation.export()
+      })
+    }.bind(that), 500)
   },
   onShow: function() {
     const checkedId = wx.getStorageSync('checkedId') || null

@@ -25,14 +25,14 @@
       {
         "pagePath": "pages/index/index",
         "text": "首页",
-        "iconPath": "images/game.png",
-        "selectedIconPath": "images/game_on.png"
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home-bg.png"
       },
       {
         "pagePath": "pages/mine/index",
         "text": "我的",
-        "iconPath": "images/mygame.png",
-        "selectedIconPath": "images/mygame_on.png"
+        "iconPath": "images/user.png",
+        "selectedIconPath": "images/user-bg.png"
       }
     ]
   }

@@ -1,4 +1,32 @@
 <!--pages/mine/weekly/weekly.wxml-->
-<view>
-<canvas canvas-id="pieCanvas" disable-scroll="true" class="canvas"></canvas>
+<view class="userinfo">
+  <image class='bg' src='{{image}}' mode='aspectFill'></image>
+  <view class='header'>本周数据统计</view>
+  <view class='count'>
+    <view>
+      <text>运动时间</text>
+      <text class='data'>30h</text>
+      <text>同比增长</text>
+      <text class='data'>2h（10%）</text>
+    </view>
+    <view>
+      <text>步数</text>
+      <text class='data'>2100步</text>
+      <text>同比增长</text>
+      <text class='data'>150步（5%）</text>
+    </view>
+    <view>
+      <text>消耗卡路里</text>
+      <text class='data'>3000千焦</text>
+      <text>同比增长</text>
+      <text class='data'>500千焦（8%）</text>
+    </view>
+  </view>
+</view>
+<view class='list'>
+<view wx:for="{{charts}}" wx:key="index" class='item'>
+  <view>{{item.title}}</view>
+  <canvas canvas-id="{{item.id}}" disable-scroll="true" class="canvas"></canvas>
+  <view class='spacing_view'></view>
+</view>
 </view>

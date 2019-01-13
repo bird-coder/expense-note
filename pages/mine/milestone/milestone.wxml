@@ -1,2 +1,39 @@
 <!--pages/mine/milestone/milestone.wxml-->
-<text>pages/mine/milestone/milestone.wxml</text>
+<view class="userinfo">
+  <image class='bg' src='{{image}}' mode='aspectFill'></image>
+  <view class='header'>历史最佳</view>
+  <view class='count'>
+    <view>
+      <text>运动时间</text>
+      <text class='data'>30h</text>
+    </view>
+    <view>
+      <text>步数</text>
+      <text class='data'>2100步</text>
+    </view>
+    <view>
+      <text>消耗卡路里</text>
+      <text class='data'>3000千焦</text>
+    </view>
+  </view>
+</view>
+<view wx:for="{{data}}" wx:key="index" class='item'>
+  <block wx:if="{{index % 2 == 0}}">
+    <view class='icon iconfont {{item.icon}}'></view>
+    <view class='content'>
+      <text>{{item.type}}</text>
+      <text class='value'>{{item.num}}</text>
+      <text>达成日期</text>
+      <text class='value'>{{item.ltime}}</text>
+    </view>
+  </block>
+  <block wx:else>
+    <view class='content'>
+      <text>{{item.type}}</text>
+      <text class='value'>{{item.num}}</text>
+      <text>达成日期</text>
+      <text class='value'>{{item.ltime}}</text>
+    </view>
+    <view class='icon iconfont {{item.icon}}'></view>
+  </block>
+</view>

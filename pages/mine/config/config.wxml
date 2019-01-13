@@ -1,2 +1,43 @@
 <!--pages/mine/config/config.wxml-->
-<text>pages/mine/config/config.wxml</text>
+<view class='info'>
+  <view>
+    <text>头像</text>
+    <view class='item'><image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image></view>
+    <text class='iconfont icon-you'></text>
+  </view>
+  <view>
+    <text>昵称</text>
+    <text class='item'>lok tar ogar</text>
+    <text class='iconfont icon-you'></text>
+  </view>
+  <view>
+    <text>性别</text>
+    <text class='item'>男</text>
+    <text class='iconfont icon-you'></text>
+  </view>
+  <view>
+    <text>年龄</text>
+    <text class='item'>26</text>
+    <text class='iconfont icon-you'></text>
+  </view>
+  <view>
+    <text>地区</text>
+    <text class='item'>中国</text>
+    <text class='iconfont icon-you'></text>
+  </view>
+  <view>
+    <text>实名认证</text>
+    <text class='item'></text>
+    <text class='iconfont icon-you'></text>
+  </view>
+  <view>
+    <text>绑定手机</text>
+    <text class='item'></text>
+    <text class='iconfont icon-you'></text>
+  </view>
+  <view>
+    <text>退出登录</text>
+    <text class='item'></text>
+    <text class='iconfont icon-you'></text>
+  </view>
+</view>

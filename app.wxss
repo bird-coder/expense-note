@@ -12,7 +12,8 @@ page {
   width: 100%;
 } 
 .spacing_view {
-  height: 14px;
+  width: 100%;
+  height: 1px;
   background-color: #f3f3f3;
 }
 .bg {
@@ -25,5 +26,39 @@ page {
 .canvas {
   width: 100%;
   height: 200px;
-  transform: scale(0.5);
+  transform: scale(0.8);
+}
+.blue {
+  background-color: #3a617e;
+}
+.button {
+  width: 80px;
+  font-size: 12px;
+  border: 0.5px solid #242424;
+  color: #fff;
+  opacity: 0.9;
+  text-shadow: rgba(0,0,0,0.9) 0px 1px 2px;
+  box-shadow: rgba(0,0,0,0.5) 0px 2px 5px, 
+    inset rgba(255,255,255,0.25) 0px 1px 0px, 
+    inset rgba(255,255,255,0.03) 0px 20px 0px, 
+    inset rgba(0, 0, 0,0.15) 0px -20px 20px, 
+    inset rgba(255,255,255,0.05) 0px 20px 20px;
+}
+.button_hover {
+  box-shadow: rgba(255,255,255,0.5) 0px 1px 0px, 
+    inset rgba(255,255,255,0.25) 0px 1px 0px, 
+    inset rgba(255,255,255,0.03) 0px 20px 0px, 
+    inset rgba(0,0,0,0.15) 0px -20px 20px, 
+    inset rgba(255,255,255,0.05) 0px 20px 20px;
+}
+.shine {
+  display: block;
+  position: relative;
+  height: 1px;
+  left: -12px;
+  background: linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,0) 100%);
+  background: -o-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,0) 100%);
+  background: -moz-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,0) 100%);
+  background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,0) 100%);
+  box-shadow: rgba(255, 255, 255, 0.2) 0px 1px 5px;
 }

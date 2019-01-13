@@ -1,18 +1,37 @@
 // pages/mine/config/config.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    userInfo: {
+      avatar: '',
+    },
+    hasUserInfo: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    if (!app.globalData.userInfo) {
+      wx.showToast({
+        title: '请先登录！',
+        duration: 2000,
+        success: function() {
+          wx.navigateBack({
+            delta: 1
+          })
+        }
+      })
+      return
+    }
+    this.setData({
+      userInfo: app.globalData.userInfo,
+      hasUserInfo: true
+    })
   },
 
   /**

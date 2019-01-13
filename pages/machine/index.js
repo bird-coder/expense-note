@@ -66,7 +66,7 @@ Page({
       fail: function() {
         wx.showToast({
           title: '连接失败',
-          image: '../../images/fail.png',
+          image: '../../images/ad_close.png',
           duration: 2000
         })
       }
