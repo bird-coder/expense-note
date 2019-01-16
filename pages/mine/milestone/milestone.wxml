@@ -4,15 +4,21 @@
   <view class='header'>历史最佳</view>
   <view class='count'>
     <view>
-      <text>运动时间</text>
+      <text>运动时间(总)</text>
+      <text class='data'>30h</text>
+      <text>运动时间(max)</text>
       <text class='data'>30h</text>
     </view>
     <view>
-      <text>步数</text>
+      <text>步数(总)</text>
+      <text class='data'>2100步</text>
+      <text>步数(max)</text>
       <text class='data'>2100步</text>
     </view>
     <view>
-      <text>消耗卡路里</text>
+      <text>消耗卡路里(总)</text>
+      <text class='data'>3000千焦</text>
+      <text>消耗卡路里(max)</text>
       <text class='data'>3000千焦</text>
     </view>
   </view>

@@ -1,7 +1,7 @@
 /* pages/mine/milestone/milestone.wxss */
 .userinfo {
   position: relative;
-  min-height: 300rpx;
+  min-height: 400rpx;
 }
 .header {
   font-size: 20px;
@@ -16,6 +16,7 @@
   flex-direction: row;
   justify-content: space-between;
   margin: 0 10px;
+  padding-bottom: 20px;
 }
 .count view {
   display: flex;
