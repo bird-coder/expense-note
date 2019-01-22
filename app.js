@@ -112,6 +112,15 @@ App({
   globalData: {
     userInfo: null,
     adFrom: "",
-    env: 'dev'
+    env: 'dev',
+    background: false,
+  },
+  onShow: function() {
+    console.log('应用前台显示')
+    this.globalData.background = false
+  },
+  onHide: function() {
+    console.log('应用进入后台')
+    this.globalData.background = true
   }
 })

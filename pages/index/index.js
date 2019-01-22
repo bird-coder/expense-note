@@ -17,8 +17,18 @@ Page({
     // wx.navigateTo({
     //   url: '../machine/index',
     // })
-    if (this.data.trainning) this.setData({trainning: false})
-    else this.setData({ trainning: true })
+    if (this.data.trainning) {
+      wx.setKeepScreenOn({
+        keepScreenOn: false,
+      })
+      this.setData({trainning: false})
+    }
+    else {
+      wx.setKeepScreenOn({
+        keepScreenOn: true,
+      })
+      this.setData({ trainning: true })
+    }
   },
   increaseCount: function(num) {
     let type = parseInt(num.substr(0, 2), 16)
@@ -35,7 +45,7 @@ Page({
         console.log("卧推器材");break;
       default: console.log("器材类型错误"); return
     }
-    if (this.data.trainning) this.setData({ total: this.data.total + count })
+    if (this.data.trainning && !app.globalData.background) this.setData({ total: this.data.total + count })
   },
   onLoad: function () {
     
@@ -109,6 +119,9 @@ Page({
         trainning: true,
         deviceId: checkedId,
         isBack: false
+      })
+      wx.setKeepScreenOn({
+        keepScreenOn: true,
       })
       this.stopBluetoothDevicesDiscovery()
       this.getBLEDeviceServices(checkedId)
