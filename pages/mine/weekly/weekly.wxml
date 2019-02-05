@@ -5,28 +5,31 @@
   <view class='count'>
     <view>
       <text>运动时间</text>
-      <text class='data'>30h</text>
+      <text class='data'>{{list.duration.num}}h</text>
       <text>同比增长</text>
-      <text class='data'>2h（10%）</text>
+      <text class='data'>{{list.duration.num - list.duration.old}}h（{{list.duration.rate}}）</text>
     </view>
     <view>
       <text>步数</text>
-      <text class='data'>2100步</text>
+      <text class='data'>{{list.duration.num}}步</text>
       <text>同比增长</text>
-      <text class='data'>150步（5%）</text>
+      <text class='data'>{{list.duration.num - list.duration.old}}步（{{list.duration.rate}}）</text>
     </view>
     <view>
       <text>消耗卡路里</text>
-      <text class='data'>3000千焦</text>
+      <text class='data'>{{list.duration.num}}千焦</text>
       <text>同比增长</text>
-      <text class='data'>500千焦（8%）</text>
+      <text class='data'>{{list.duration.num - list.duration.old}}千焦（{{list.duration.rate}}）</text>
     </view>
   </view>
 </view>
 <view class='list'>
+<block wx:if="{{hasCharts}}">
 <view wx:for="{{charts}}" wx:key="index" class='item'>
   <view>{{item.title}}</view>
   <canvas canvas-id="{{item.id}}" disable-scroll="true" class="canvas"></canvas>
   <view class='spacing_view'></view>
 </view>
+</block>
+<view wx:else class='no-data'>暂无数据！</view>
 </view>

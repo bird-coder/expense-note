@@ -1,4 +1,5 @@
 // pages/mine/weekly/weekly.js
+const app = getApp()
 const wxCharts = require('../../../utils/wxcharts-min.js')
 Page({
 
@@ -9,8 +10,13 @@ Page({
     name: '周报',
     ename: 'weekly',
     image: '../../../images/weekly.jpg',
+    list: {
+      'duration': {num: 30, old: 28, rate: '10.00%'},
+      'step': { num: 2100, old: 1950, rate: '5.00%'},
+      'consume': { num: 3000, old: 2500, rate: '8.00%'}
+    },
     charts: {
-      'time': { id: 'timeCharts', categories: [1, 2, 3, 4, 5, 6], series: [
+      'duration': { id: 'durationCharts', categories: [1, 2, 3, 4, 5, 6], series: [
           {name: '运动时间', data: [50,30,10,12,46,20]}
         ], unit: '时间(小时)', title: '一周运动时间统计'
       },
@@ -25,18 +31,43 @@ Page({
           { name: '消耗卡路里', data: [50, 30, 10, 12, 46, 20] }
         ], unit: '卡路里(千焦)', title: '一周消耗卡路里统计'
       },
-    }
+    },
+    hasCharts: false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // this.initCharts()
+    let that = this
+    if (app.globalData.weekly) {
+      that.setData({
+        charts: app.globalData.weekly.charts,
+        list: app.globalData.weekly.list
+      })
+      that.initCharts()
+    }else {
+      wx.showLoading({
+        title: '周报生成中。。。',
+      })
+      app.getWeekly(function () {
+        that.setData({
+          charts: app.globalData.weekly.charts,
+          list: app.globalData.weekly.list
+        })
+        that.initCharts()
+      })
+    }
+  },
+  initCharts: function () {
     let windowWidth = 320
     let res = wx.getSystemInfoSync()
     console.log(res)
     if (res && res.windowWidth) windowWidth = res.windowWidth
-    for (let i in this.data.charts){
+    let length = 0
+    for (let i in this.data.charts) {
+      length++
       new wxCharts({
         canvasId: this.data.charts[i]['id'],
         type: 'area',
@@ -55,6 +86,7 @@ Page({
         legend: false
       });
     }
+    if (length > 0) this.setData({hasCharts: true})
   },
 
   /**

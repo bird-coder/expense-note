@@ -43,3 +43,7 @@
   align-items: center;
   margin-bottom: 10px;
 }
+.no-data {
+  margin-top: 30%;
+  font-size: 16px;
+}

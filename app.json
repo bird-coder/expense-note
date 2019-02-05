@@ -8,7 +8,8 @@
     "pages/mine/advise/advise",
     "pages/mine/config/config",
     "pages/mine/feedback/feedback",
-    "pages/mine/program/program"
+    "pages/mine/program/program",
+    "pages/auth/auth"
   ],
   "window": {
     "backgroundTextStyle": "light",

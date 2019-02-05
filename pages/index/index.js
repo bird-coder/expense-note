@@ -22,12 +22,15 @@ Page({
         keepScreenOn: false,
       })
       this.setData({trainning: false})
+      app.stopTimer(app.globalData.timer)
+      app.updateUserSports()
     }
     else {
       wx.setKeepScreenOn({
         keepScreenOn: true,
       })
       this.setData({ trainning: true })
+      app.startTimer()
     }
   },
   increaseCount: function(num) {
@@ -45,10 +48,55 @@ Page({
         console.log("卧推器材");break;
       default: console.log("器材类型错误"); return
     }
-    if (this.data.trainning && !app.globalData.background) this.setData({ total: this.data.total + count })
+    if (this.data.trainning && !app.globalData.background) {
+      this.setData({ total: this.data.total + count })
+      let total = app.globalData.newData.count + count
+      app.globalData.newData = {
+        count: total,
+        time: utils.getTimeStamp(),
+        consume: total * 3,
+      }
+    }
   },
   onLoad: function () {
-    
+    // app.login()
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          if (app.globalData.overdue){
+            wx.showLoading({
+              title: '登录中。。。',
+            })
+            wx.login({
+              success: dt => {
+                wx.getUserInfo({
+                  success: res => {
+                    console.log(res)
+                    app.wxRequest('login', {
+                      platform: 'weixin',
+                      device: app.globalData.device,
+                      ver: app.globalData.ver,
+                      code: dt.code,
+                      encryptedData: res.encryptedData,
+                      iv: res.iv,
+                    }, data => {
+                      app.globalData.userInfo = data.user
+                      app.globalData.token = data.token
+                      app.globalData.overdue = false
+                      wx.setStorageSync('token', data.token)
+                    }, 'POST')
+                  }
+                })
+              }
+            })
+          }
+        }else {
+          wx.redirectTo({
+            url: '/pages/auth/auth',
+          })
+        }
+      }
+    })
   },
   onReady: function () {
     var that = this;
@@ -123,6 +171,7 @@ Page({
       wx.setKeepScreenOn({
         keepScreenOn: true,
       })
+      app.startTimer()
       this.stopBluetoothDevicesDiscovery()
       this.getBLEDeviceServices(checkedId)
     }
