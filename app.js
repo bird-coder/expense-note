@@ -101,6 +101,13 @@ App({
       timer = null
     }
   },
+  startClearTimer: function (cb) {
+    let that = this
+    that.stopTimer(that.globalData.clearTimer)
+    that.globalData.clearTimer = setInterval(function () {
+      if (typeof cb === 'function') cb()
+    }, 1000 * 10)
+  },
   updateUserSports: function () {
     let that = this
     if (that.globalData.newData.time && that.globalData.newData.time > that.globalData.oldTime)
@@ -198,6 +205,7 @@ App({
     device: 'ios',
     ver: '1.0.0',
     timer: null,
+    clearTimer: null,
     oldTime: null,
     newData: {
       count: 0,

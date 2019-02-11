@@ -33,6 +33,13 @@ Page({
       app.startTimer()
     }
   },
+  clearCount: function() {
+    if (this.data.total > 0){
+      this.setData({ total: 0 })
+      app.updateUserSports()
+      app.globalData.oldTime = utils.getTimeStamp()
+    }
+  },
   increaseCount: function(num) {
     let type = parseInt(num.substr(0, 2), 16)
     let value = parseInt(num.substr(2), 16)
@@ -56,6 +63,7 @@ Page({
         time: utils.getTimeStamp(),
         consume: total * 3,
       }
+      app.startClearTimer(this.clearCount)
     }
   },
   onLoad: function () {
@@ -346,6 +354,8 @@ Page({
       total: 0
     })
     this._discoveryStarted = false
+    app.stopTimer(app.globalData.timer)
+    app.updateUserSports()
   },
   onShareAppMessage: function () {
     return app.getShare();
