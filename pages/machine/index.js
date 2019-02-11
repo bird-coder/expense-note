@@ -33,8 +33,13 @@ Page({
           return
         }
         if (!device.advertisData) return
-        let deviceName = utils.decodeBuffer(device.advertisData)
-        deviceName = utils.checkDevice(deviceName)
+        let deviceData = utils.ab2hex(device.advertisData)
+        console.log(deviceData)
+        if (deviceData.slice(0, 4) !== 'aa55') return
+        let deviceName = deviceData.slice(4)
+        switch (deviceName){
+          case '020101': device.name = '踏步机';break;
+        }
         const foundDevices = this.data.devices
         const idx = utils.inArray(foundDevices, 'deviceId', device.deviceId)
         const data = {}

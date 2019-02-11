@@ -1,4 +1,7 @@
 // pages/mine/milestone/milestone.js
+const app = getApp()
+const utils = require('../../../utils/util.js')
+
 Page({
 
   /**
@@ -17,7 +20,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    if (app.globalData.userInfo) {
+      this.setData({
+        data: [
+          { num: app.globalData.userInfo.max_duration + ' h', ltime: utils.formatDate(new Date(app.globalData.userInfo.mdtime)), icon: 'icon-jianshen', type: '单日运动时间', state: app.globalData.userInfo.max_duration ? true : false},
+          { num: app.globalData.userInfo.max_step + ' 步', ltime: utils.formatDate(new Date(app.globalData.userInfo.mstime)), icon: 'icon-ziyuan', type: '单日步数', state: app.globalData.userInfo.max_step ? true : false },
+          { num: app.globalData.userInfo.max_consume + ' 千焦', ltime: utils.formatDate(new Date(app.globalData.userInfo.mctime)), icon: 'icon-xiaohao', type: '单日消耗卡路里', state: app.globalData.userInfo.max_consume ? true : false },
+        ]
+      })
+    }
   },
 
   /**

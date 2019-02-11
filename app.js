@@ -108,7 +108,7 @@ App({
       token: that.globalData.token,
       type: 1,
       count: that.globalData.newData.count,
-      duration: that.globalData.newData.time - that.globalData.oldData.time,
+      duration: that.globalData.newData.time - that.globalData.oldTime,
       consume: that.globalData.newData.consume,
     }, data => {
       console.log('数据汇报结果：' + data.msg)

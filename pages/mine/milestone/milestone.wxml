@@ -28,17 +28,23 @@
     <view class='icon iconfont {{item.icon}}'></view>
     <view class='content'>
       <text>{{item.type}}</text>
-      <text class='value'>{{item.num}}</text>
-      <text>达成日期</text>
-      <text class='value'>{{item.ltime}}</text>
+      <block wx:if="{{item.state}}">
+        <text class='value'>{{item.num}}</text>
+        <text>达成日期</text>
+        <text class='value'>{{item.ltime}}</text>
+      </block>
+      <text wx:else class='value'>未达成</text>
     </view>
   </block>
   <block wx:else>
     <view class='content'>
       <text>{{item.type}}</text>
-      <text class='value'>{{item.num}}</text>
-      <text>达成日期</text>
-      <text class='value'>{{item.ltime}}</text>
+      <block wx:if="{{item.state}}">
+        <text class='value'>{{item.num}}</text>
+        <text>达成日期</text>
+        <text class='value'>{{item.ltime}}</text>
+      </block>
+      <text wx:else class='value'>未达成</text>
     </view>
     <view class='icon iconfont {{item.icon}}'></view>
   </block>
