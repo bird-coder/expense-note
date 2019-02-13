@@ -2,22 +2,17 @@
 <view class='info'>
   <view>
     <text>头像</text>
-    <view class='item'><image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image></view>
+    <view class='item'><image class="userinfo-avatar" src="{{userInfo.avatar}}" mode="cover"></image></view>
     <text class='iconfont icon-you'></text>
   </view>
   <view>
     <text>昵称</text>
-    <text class='item'>lok tar ogar</text>
+    <text class='item'>{{userInfo.nickname}}</text>
     <text class='iconfont icon-you'></text>
   </view>
   <view>
     <text>性别</text>
-    <text class='item'>男</text>
-    <text class='iconfont icon-you'></text>
-  </view>
-  <view>
-    <text>年龄</text>
-    <text class='item'>26</text>
+    <text class='item'>{{userInfo.gender == 'm' ? '男' : '女'}}</text>
     <text class='iconfont icon-you'></text>
   </view>
   <view>

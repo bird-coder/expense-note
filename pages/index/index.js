@@ -23,7 +23,8 @@ Page({
       })
       this.setData({trainning: false})
       app.stopTimer(app.globalData.timer)
-      app.updateUserSports()
+      app.stopTimer(app.globalData.clearTimer)
+      this.clearCount()
     }
     else {
       wx.setKeepScreenOn({
@@ -31,12 +32,14 @@ Page({
       })
       this.setData({ trainning: true })
       app.startTimer()
+      app.startClearTimer(this.clearCount)
     }
   },
   clearCount: function() {
     if (this.data.total > 0){
       this.setData({ total: 0 })
       app.updateUserSports()
+    }else{
       app.globalData.oldTime = utils.getTimeStamp()
     }
   },
@@ -167,6 +170,11 @@ Page({
     }.bind(that), 500)
   },
   onShow: function() {
+    if (app.globalData.backToIndex){
+      app.globalData.backToIndex = false
+      app.startClearTimer(this.clearCount)
+      this.setData({total: 0})
+    }
     const checkedId = wx.getStorageSync('checkedId') || null
     console.log(checkedId);
     if (checkedId && this.data.isBack) {
@@ -180,6 +188,7 @@ Page({
         keepScreenOn: true,
       })
       app.startTimer()
+      app.startClearTimer(this.clearCount)
       this.stopBluetoothDevicesDiscovery()
       this.getBLEDeviceServices(checkedId)
     }
@@ -355,6 +364,7 @@ Page({
     })
     this._discoveryStarted = false
     app.stopTimer(app.globalData.timer)
+    app.stopTimer(app.globalData.clearTimer)
     app.updateUserSports()
   },
   onShareAppMessage: function () {

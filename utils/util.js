@@ -17,6 +17,10 @@ const formatDate = date => {
   return [year, month, day].map(formatNumber).join('-')
 }
 
+const timeToHour = time => {
+  return (time / 3600).toFixed(2)
+}
+
 const getTimeStamp = () => {
   let timestamp = Date.parse(new Date())
   return timestamp/1000
@@ -98,6 +102,7 @@ const int2hex = function(num){
 module.exports = {
   formatTime: formatTime,
   formatDate: formatDate,
+  timeToHour: timeToHour,
   getTimeStamp: getTimeStamp,
   max: max,
   len: len,

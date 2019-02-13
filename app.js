@@ -110,18 +110,21 @@ App({
   },
   updateUserSports: function () {
     let that = this
-    if (that.globalData.newData.time && that.globalData.newData.time > that.globalData.oldTime)
-    that.wxRequest('updateUserSports', {
-      token: that.globalData.token,
-      type: 1,
-      count: that.globalData.newData.count,
-      duration: that.globalData.newData.time - that.globalData.oldTime,
-      consume: that.globalData.newData.consume,
-    }, data => {
-      console.log('数据汇报结果：' + data.msg)
-      that.globalData.oldTime = that.globalData.newData.time
-      that.globalData.newData = {count: 0, time: null, consume: 0}
-    }, 'POST')
+    if (that.globalData.newData.time && that.globalData.newData.time > that.globalData.oldTime){
+      that.wxRequest('updateUserSports', {
+        token: that.globalData.token,
+        type: 1,
+        count: that.globalData.newData.count,
+        duration: that.globalData.newData.time - that.globalData.oldTime,
+        consume: that.globalData.newData.consume,
+      }, data => {
+        console.log('数据汇报结果：' + data.msg)
+        that.globalData.oldTime = that.globalData.newData.time
+        that.globalData.newData = {count: 0, time: null, consume: 0}
+      }, 'POST')
+    }else{
+      that.globalData.oldTime = utils.getTimeStamp()
+    }
   },
   //分享内容
   getShare: function () {
@@ -216,13 +219,20 @@ App({
   },
   onShow: function() {
     console.log('应用前台显示')
-    if (this.globalData.background) this.startTimer()
+    if (this.globalData.background) {
+      this.startTimer()
+      this.globalData.backToIndex = true
+      wx.switchTab({
+        url: '/pages/index/index',
+      })
+    }
     this.globalData.background = false
   },
   onHide: function() {
     console.log('应用进入后台')
     this.globalData.background = true
     this.stopTimer(this.globalData.timer)
+    this.stopTimer(this.globalData.clearTimer)
     this.updateUserSports()
   }
 })

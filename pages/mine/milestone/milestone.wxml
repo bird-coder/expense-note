@@ -1,25 +1,28 @@
 <!--pages/mine/milestone/milestone.wxml-->
 <view class="userinfo">
   <image class='bg' src='{{image}}' mode='aspectFill'></image>
-  <view class='header'>历史最佳</view>
+  <view class='header'>
+    历史最佳
+    <text style='font-size: 14px;'>（数据每天0点更新）</text>
+  </view>
   <view class='count'>
     <view>
       <text>运动时间(总)</text>
-      <text class='data'>30h</text>
+      <text class='data'>{{list.duration.total}}</text>
       <text>运动时间(max)</text>
-      <text class='data'>30h</text>
+      <text class='data'>{{list.duration.max}}</text>
     </view>
     <view>
       <text>步数(总)</text>
-      <text class='data'>2100步</text>
+      <text class='data'>{{list.step.total}}</text>
       <text>步数(max)</text>
-      <text class='data'>2100步</text>
+      <text class='data'>{{list.step.max}}</text>
     </view>
     <view>
       <text>消耗卡路里(总)</text>
-      <text class='data'>3000千焦</text>
+      <text class='data'>{{list.consume.total}}</text>
       <text>消耗卡路里(max)</text>
-      <text class='data'>3000千焦</text>
+      <text class='data'>{{list.consume.max}}</text>
     </view>
   </view>
 </view>

@@ -1,7 +1,10 @@
 <!--pages/mine/weekly/weekly.wxml-->
 <view class="userinfo">
   <image class='bg' src='{{image}}' mode='aspectFill'></image>
-  <view class='header'>本周数据统计</view>
+  <view class='header'>
+    本周数据统计
+    <text style='font-size: 14px;'>（数据每周一更新）</text>
+  </view>
   <view class='count'>
     <view>
       <text>运动时间</text>
