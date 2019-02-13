@@ -234,5 +234,8 @@ App({
     this.stopTimer(this.globalData.timer)
     this.stopTimer(this.globalData.clearTimer)
     this.updateUserSports()
+  },
+  onError: function(msg) {
+    this.wxRequest('feedback', { text: msg, }, null, 'POST')
   }
 })
