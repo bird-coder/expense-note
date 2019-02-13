@@ -1,11 +1,33 @@
 // pages/mine/feedback/feedback.js
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    feedback: '',
+  },
 
+  getFeedback: function (e) {
+    console.log(e.detail)
+    this.setData({feedback: e.detail.value})
+  },
+
+  postFeedback: function () {
+    let that = this
+    let token = wx.getStorageSync('token')
+    app.wxRequest('feedback', {
+      token: token,
+      type: 1,
+      text: that.data.feedback,
+    }, function (res) {
+      that.setData({feedback: ''})
+      wx.showToast({
+        title: res.msg,
+      })
+    }, 'POST')
   },
 
   /**

@@ -1,6 +1,6 @@
 <!--pages/mine/feedback/feedback.wxml-->
 <view class='title'>请输入您的对我们的宝贵建议</view>
 <view>
-  <textarea class='content' placeholder='请在这里输入内容' maxlength='300'></textarea>
+  <textarea class='content' placeholder='请在这里输入内容' maxlength='300' bindinput='getFeedback' value='{{feedback}}'></textarea>
 </view>
-<button class='submit'>提交</button>
+<button class='submit' bindtap='postFeedback'>提交</button>
