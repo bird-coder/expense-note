@@ -139,27 +139,39 @@ App({
     //   withShareTicket: true
     // });
     let that = this
-    if (!that.globalData.userInfo){
-      wx.showLoading({
-        title: '加载中',
-      })
-      wx.login({
-        success: res => {
-          console.log(res)
-          // 发送 res.code 到后台换取 openId, sessionKey, unionId
-          that.wxRequest('login', {
-            platform: 'weixin',
-            device: that.globalData.device,
-            ver: that.globalData.ver,
-            code: res.code,
-          }, data => {
-            that.globalData.userInfo = data.user
-            that.globalData.token = data.token
-            wx.setStorageSync('token', data.token)
-          }, 'POST')
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          if (that.globalData.overdue) {
+            wx.showLoading({
+              title: '登录中。。。',
+            })
+            wx.login({
+              success: dt => {
+                wx.getUserInfo({
+                  success: res => {
+                    console.log(res)
+                    that.wxRequest('login', {
+                      platform: 'weixin',
+                      device: that.globalData.device,
+                      ver: that.globalData.ver,
+                      code: dt.code,
+                      encryptedData: res.encryptedData,
+                      iv: res.iv,
+                    }, data => {
+                      that.globalData.userInfo = data.user
+                      that.globalData.token = data.token
+                      that.globalData.overdue = false
+                      wx.setStorageSync('token', data.token)
+                    }, 'POST')
+                  }
+                })
+              }
+            })
+          }
         }
-      })
-    }
+      }
+    })
   },
   getWeekly: function (cb) {
     let that = this
@@ -172,6 +184,7 @@ App({
   //请求服务器
   wxRequest: function (url, params, cb, type = 'GET') {
     console.log(params)
+    let that = this
     wx.request({
       url: 'https://ble.jltop.top/mobile/' + url,
       header: {
@@ -182,9 +195,24 @@ App({
       success: function (res) {
         wx.hideLoading();
         console.log(res.data);
-        if (res.data.ret != 0) wx.showToast({
-          title: res.data.msg,
-        })
+        if (res.data.ret != 0) {
+          if (res.data.relogin == 1) {
+            wx.showToast({
+              title: '登录已失效，自动跳转登录',
+              duration: 2000,
+              success: function () {
+                that.globalData.overdue = true
+                that.login()
+                wx.switchTab({
+                  url: '/pages/index/index',
+                })
+              }
+            })
+          }
+          if (res.data.msg) wx.showToast({
+            title: res.data.msg,
+          })
+        }
         else typeof cb == "function" && cb(res.data)
       },
       fail: function (res) {
