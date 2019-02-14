@@ -100,6 +100,37 @@ Page({
                 })
               }
             })
+          }else if (!app.globalData.userInfo){
+            let token = wx.getStorageSync('token')
+            app.wxRequest('auth', { token: token }, data => {
+              if (data.user && data.token){
+                app.globalData.userInfo = data.user
+                app.globalData.token = data.token
+                wx.setStorageSync('token', data.token)
+              }else{
+                wx.login({
+                  success: dt => {
+                    wx.getUserInfo({
+                      success: res => {
+                        console.log(res)
+                        app.wxRequest('login', {
+                          platform: 'weixin',
+                          device: app.globalData.device,
+                          ver: app.globalData.ver,
+                          code: dt.code,
+                          encryptedData: res.encryptedData,
+                          iv: res.iv,
+                        }, data => {
+                          app.globalData.userInfo = data.user
+                          app.globalData.token = data.token
+                          wx.setStorageSync('token', data.token)
+                        }, 'POST')
+                      }
+                    })
+                  }
+                })
+              }
+            }, 'POST')
           }
         }else {
           wx.redirectTo({

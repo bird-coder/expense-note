@@ -74,12 +74,6 @@ App({
     else this.globalData.device = 'android'
     wx.checkSession({
       success: function() {
-        let token = wx.getStorageSync('token')
-        that.wxRequest('auth', { token: token}, data => {
-          that.globalData.userInfo = data.user
-          that.globalData.token = data.token
-          wx.setStorageSync('token', data.token)
-        }, 'POST')
         that.getWeekly()
       },
       fail: function() {
@@ -196,20 +190,7 @@ App({
         wx.hideLoading();
         console.log(res.data);
         if (res.data.ret != 0) {
-          if (res.data.relogin == 1) {
-            wx.showToast({
-              title: '登录已失效，自动跳转登录',
-              duration: 2000,
-              success: function () {
-                that.globalData.overdue = true
-                that.login()
-                wx.switchTab({
-                  url: '/pages/index/index',
-                })
-              }
-            })
-          }
-          if (res.data.msg) wx.showToast({
+          if (res.data.msg && !res.data.relogin) wx.showToast({
             title: res.data.msg,
           })
         }
