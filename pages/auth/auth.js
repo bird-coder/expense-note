@@ -21,6 +21,7 @@ Page({
     if (e.detail.userInfo) {
       wx.showLoading({
         title: '授权登录中。。。',
+        mask: true,
       })
       wx.login({
         success: res => {

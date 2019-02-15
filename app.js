@@ -74,6 +74,17 @@ App({
     else this.globalData.device = 'android'
     wx.checkSession({
       success: function() {
+        wx.showLoading({
+          title: '登录中。。。',
+          mask: true,
+        })
+        let token = wx.getStorageSync('token')
+        that.wxRequest('auth', { token: token }, data => {
+          that.globalData.userInfo = data.user
+          that.globalData.token = data.token
+          wx.setStorageSync('token', data.token)
+          wx.hideLoading()
+        }, 'POST', false)
         that.getWeekly()
       },
       fail: function() {
@@ -139,6 +150,7 @@ App({
           if (that.globalData.overdue) {
             wx.showLoading({
               title: '登录中。。。',
+              mask: true,
             })
             wx.login({
               success: dt => {
@@ -176,7 +188,7 @@ App({
     }, 'POST')
   },
   //请求服务器
-  wxRequest: function (url, params, cb, type = 'GET') {
+  wxRequest: function (url, params, cb, type = 'GET', isHide = true) {
     console.log(params)
     let that = this
     wx.request({
@@ -187,7 +199,7 @@ App({
       method: type,
       data: params,
       success: function (res) {
-        wx.hideLoading();
+        if (isHide) wx.hideLoading();
         console.log(res.data);
         if (res.data.ret != 0) {
           if (res.data.msg && !res.data.relogin) wx.showToast({

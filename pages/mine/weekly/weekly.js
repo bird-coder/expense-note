@@ -50,6 +50,7 @@ Page({
     }else {
       wx.showLoading({
         title: '周报生成中。。。',
+        mask: true,
       })
       app.getWeekly(function () {
         that.setData({

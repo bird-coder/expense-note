@@ -2,7 +2,7 @@
 <view>
 <view class="userinfo">
   <image class='bg' src='../../images/mine.jpg' mode='aspectFill'></image>
-  <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="userinfo-avatar"> <image src='../../images/user-avatar.png' mode='aspectFill'></image> </button>
+  <button wx:if="{{!hasUserInfo}}"class="userinfo-avatar"> <image src='../../images/user-avatar.png' mode='aspectFill'></image> </button>
   
   <block wx:else>
     <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatar || '../../images/user-avatar.png'}}" mode="cover"></image>
