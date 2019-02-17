@@ -2,33 +2,72 @@
 <view class="userinfo">
   <image class='bg' src='{{image}}' mode='aspectFill'></image>
   <view class='header'>
-    本周数据统计
-    <text style='font-size: 14px;'>（数据每周一更新）</text>
+    <block wx:if="{{type == 0}}">
+      本周数据统计
+      <text style='font-size: 14px;'>（数据每小时更新）</text>
+    </block>
+    <block wx:else>
+      今日数据统计
+      <text style='font-size: 14px;'>（数据每小时更新）</text>
+    </block>
   </view>
-  <view class='count'>
+  <view class='count' wx:if="{{type == 0}}">
     <view>
       <text>运动时间</text>
       <text class='data'>{{list.duration.num}}h</text>
       <text>同比增长</text>
-      <text class='data'>{{list.duration.num - list.duration.old}}h（{{list.duration.rate}}）</text>
+      <text class='data'>{{list.duration.num - list.duration.old}}h\n（{{list.duration.rate}}）</text>
     </view>
     <view>
       <text>步数</text>
-      <text class='data'>{{list.duration.num}}步</text>
+      <text class='data'>{{list.step.num}}步</text>
       <text>同比增长</text>
-      <text class='data'>{{list.duration.num - list.duration.old}}步（{{list.duration.rate}}）</text>
+      <text class='data'>{{list.step.num - list.step.old}}步\n（{{list.step.rate}}）</text>
     </view>
     <view>
       <text>消耗卡路里</text>
-      <text class='data'>{{list.duration.num}}千焦</text>
+      <text class='data'>{{list.consume.num}}大卡</text>
       <text>同比增长</text>
-      <text class='data'>{{list.duration.num - list.duration.old}}千焦（{{list.duration.rate}}）</text>
+      <text class='data'>{{list.consume.num - list.consume.old}}大卡\n（{{list.consume.rate}}）</text>
+    </view>
+  </view>
+  <view class='count' wx:else>
+    <view>
+      <text>运动时间</text>
+      <text class='data'>{{daily.list.duration.num}}h</text>
+      <text>同比增长</text>
+      <text class='data'>{{daily.list.duration.num - daily.list.duration.old}}h\n（{{daily.list.duration.rate}}）</text>
+    </view>
+    <view>
+      <text>步数</text>
+      <text class='data'>{{daily.list.step.num}}步</text>
+      <text>同比增长</text>
+      <text class='data'>{{daily.list.step.num - daily.list.step.old}}步\n（{{daily.list.step.rate}}）</text>
+    </view>
+    <view>
+      <text>消耗卡路里</text>
+      <text class='data'>{{daily.list.consume.num}}大卡</text>
+      <text>同比增长</text>
+      <text class='data'>{{daily.list.consume.num - daily.list.consume.old}}大卡\n（{{daily.list.consume.rate}}）</text>
     </view>
   </view>
 </view>
+<view class='tab'>
+  <view class='tabBtn'>
+    <view bindtap='switchWeekly' class='{{type == 0 ? "active" : ""}}'>本周</view>
+    <view bindtap='switchDaily' class='{{type == 1 ? "active" : ""}}'>今日</view>
+  </view>
+</view>
 <view class='list'>
-<block wx:if="{{hasCharts}}">
+<block wx:if="{{hasCharts && type == 0}}">
 <view wx:for="{{charts}}" wx:key="index" class='item'>
+  <view>{{item.title}}</view>
+  <canvas canvas-id="{{item.id}}" disable-scroll="true" class="canvas"></canvas>
+  <view class='spacing_view'></view>
+</view>
+</block>
+<block wx:elif="{{hasDayCharts && type == 1}}">
+<view wx:for="{{daily.charts}}" wx:key="index" class='item'>
   <view>{{item.title}}</view>
   <canvas canvas-id="{{item.id}}" disable-scroll="true" class="canvas"></canvas>
   <view class='spacing_view'></view>

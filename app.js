@@ -85,6 +85,7 @@ App({
           wx.setStorageSync('token', data.token)
           wx.hideLoading()
         }, 'POST', false)
+        that.getDaily()
         that.getWeekly()
       },
       fail: function() {
@@ -179,11 +180,31 @@ App({
       }
     })
   },
+  getDaily: function (cb) {
+    let that = this
+    let token = wx.getStorageSync('token')
+    that.wxRequest('getDaily', { token: token }, data => {
+      that.globalData.daily = { charts: data.charts, list: data.list }
+      that.globalData.dailyUpdateTime = data.updateTime
+      typeof cb === 'function' && cb()
+    }, 'POST')
+  },
   getWeekly: function (cb) {
     let that = this
     let token = wx.getStorageSync('token')
-    that.wxRequest('getWeekly', { token: token}, data => {
+    that.wxRequest('getWeekly', { token: token }, data => {
       that.globalData.weekly = {charts: data.charts, list: data.list}
+      that.globalData.weeklyUpdateTime = data.updateTime
+      typeof cb === 'function' && cb()
+    }, 'POST')
+  },
+  getHistoryWeekly: function (monday = false, cb) {
+    let that = this
+    let token = wx.getStorageSync('token')
+    if (!monday) monday = utils.getMonday(1)
+    that.wxRequest('getWeekly', { token: token, monday: monday }, data => {
+      if (!that.globalData.historyWeekly) that.globalData.historyWeekly = {}
+      that.globalData.historyWeekly[monday] = { charts: data.charts, list: data.list }
       typeof cb === 'function' && cb()
     }, 'POST')
   },
@@ -236,16 +257,23 @@ App({
       time: null,
       consume: 0,
     },
+    daily: null,
+    dailyUpdateTime: null,
     weekly: null,
+    weeklyUpdateTime: null,
+    historyWeekly: null,
+    trainning: false,
   },
   onShow: function() {
     console.log('应用前台显示')
     if (this.globalData.background) {
       this.startTimer()
-      this.globalData.backToIndex = true
-      wx.switchTab({
-        url: '/pages/index/index',
-      })
+      if (this.globalData.trainning){
+        this.globalData.backToIndex = true
+        wx.switchTab({
+          url: '/pages/index/index',
+        })
+      }
     }
     this.globalData.background = false
   },

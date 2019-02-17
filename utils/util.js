@@ -26,6 +26,15 @@ const getTimeStamp = () => {
   return timestamp/1000
 }
 
+const getMonday = (num = 0) => {
+  let date = new Date()
+  let week = date.getDay()
+  let days = week ? week - 1 : 6
+  date.setDate(date.getDate() - days)
+  if (num > 0) date.setDate(date.getDate() - 7*num)
+  return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+}
+
 const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
@@ -104,6 +113,7 @@ module.exports = {
   formatDate: formatDate,
   timeToHour: timeToHour,
   getTimeStamp: getTimeStamp,
+  getMonday: getMonday,
   max: max,
   len: len,
   inArray: inArray,

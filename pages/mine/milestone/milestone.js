@@ -12,12 +12,12 @@ Page({
     data: [
       {num: '5 h', ltime: '2019-01-11', icon: 'icon-jianshen', type: '单日运动时间'},
       { num: '2100 步', ltime: '2019-01-11', icon: 'icon-ziyuan', type: '单日步数' },
-      { num: '300 千焦', ltime: '2019-01-11', icon: 'icon-xiaohao', type: '单日消耗卡路里' },
+      { num: '300 大卡', ltime: '2019-01-11', icon: 'icon-xiaohao', type: '单日消耗卡路里' },
     ],
     list: [
       {duration: '30h', max_duration: '30h'},
       { step: '2100步', max_step: '2100步' },
-      { consume: '3000千焦', max_consume: '3000千焦' },
+      { consume: '3000大卡', max_consume: '3000大卡' },
     ]
   },
 
@@ -30,12 +30,12 @@ Page({
         data: [
           { num: utils.timeToHour(app.globalData.userInfo.max_duration) + ' h', ltime: utils.formatDate(new Date(app.globalData.userInfo.mdtime * 1000)), icon: 'icon-jianshen', type: '单日运动时间', state: app.globalData.userInfo.max_duration ? true : false},
           { num: app.globalData.userInfo.max_step + ' 步', ltime: utils.formatDate(new Date(app.globalData.userInfo.mstime * 1000)), icon: 'icon-ziyuan', type: '单日步数', state: app.globalData.userInfo.max_step ? true : false },
-          { num: app.globalData.userInfo.max_consume + ' 千焦', ltime: utils.formatDate(new Date(app.globalData.userInfo.mctime * 1000)), icon: 'icon-xiaohao', type: '单日消耗卡路里', state: app.globalData.userInfo.max_consume ? true : false },
+          { num: app.globalData.userInfo.max_consume + ' 大卡', ltime: utils.formatDate(new Date(app.globalData.userInfo.mctime * 1000)), icon: 'icon-xiaohao', type: '单日消耗卡路里', state: app.globalData.userInfo.max_consume ? true : false },
         ],
         list: {
           duration: { total: utils.timeToHour(app.globalData.userInfo.duration) + 'h', max: utils.timeToHour(app.globalData.userInfo.max_duration) + 'h'},
           step: { total: app.globalData.userInfo.step + '步', max: app.globalData.userInfo.max_step + '步' },
-          consume: { total: app.globalData.userInfo.consume + '千焦', max: app.globalData.userInfo.max_consume + '千焦' },
+          consume: { total: app.globalData.userInfo.consume + '大卡', max: app.globalData.userInfo.max_consume + '大卡' },
         }
       })
     }

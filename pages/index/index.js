@@ -22,6 +22,7 @@ Page({
         keepScreenOn: false,
       })
       this.setData({trainning: false})
+      app.globalData.trainning = false
       app.stopTimer(app.globalData.timer)
       app.stopTimer(app.globalData.clearTimer)
       this.clearCount()
@@ -31,6 +32,7 @@ Page({
         keepScreenOn: true,
       })
       this.setData({ trainning: true })
+      app.globalData.trainning = true
       app.startTimer()
       app.startClearTimer(this.clearCount)
     }
@@ -64,7 +66,7 @@ Page({
       app.globalData.newData = {
         count: total,
         time: utils.getTimeStamp(),
-        consume: total * 3,
+        consume: total * 0.1,
       }
       app.startClearTimer(this.clearCount)
     }
@@ -365,6 +367,7 @@ Page({
       total: 0
     })
     this._discoveryStarted = false
+    app.globalData.trainning = false
     app.stopTimer(app.globalData.timer)
     app.stopTimer(app.globalData.clearTimer)
     app.updateUserSports()
