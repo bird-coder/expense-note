@@ -80,10 +80,15 @@ App({
         })
         let token = wx.getStorageSync('token')
         that.wxRequest('auth', { token: token }, data => {
-          that.globalData.userInfo = data.user
-          that.globalData.token = data.token
-          wx.setStorageSync('token', data.token)
-          wx.hideLoading()
+          if (data.user && data.token){
+            that.globalData.userInfo = data.user
+            that.globalData.token = data.token
+            wx.setStorageSync('token', data.token)
+            wx.hideLoading()
+          }else{
+            wx.hideLoading()
+            that.login()
+          }
         }, 'POST', false)
         that.getDaily()
         that.getWeekly()
@@ -145,37 +150,36 @@ App({
     //   withShareTicket: true
     // });
     let that = this
+    wx.showLoading({
+      title: '登录中。。。',
+      mask: true,
+    })
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
-          if (that.globalData.overdue) {
-            wx.showLoading({
-              title: '登录中。。。',
-              mask: true,
-            })
-            wx.login({
-              success: dt => {
-                wx.getUserInfo({
-                  success: res => {
-                    console.log(res)
-                    that.wxRequest('login', {
-                      platform: 'weixin',
-                      device: that.globalData.device,
-                      ver: that.globalData.ver,
-                      code: dt.code,
-                      encryptedData: res.encryptedData,
-                      iv: res.iv,
-                    }, data => {
-                      that.globalData.userInfo = data.user
-                      that.globalData.token = data.token
-                      that.globalData.overdue = false
-                      wx.setStorageSync('token', data.token)
-                    }, 'POST')
-                  }
-                })
-              }
-            })
-          }
+          wx.login({
+            success: dt => {
+              wx.getUserInfo({
+                success: res => {
+                  console.log(res)
+                  that.wxRequest('login', {
+                    platform: 'weixin',
+                    device: that.globalData.device,
+                    ver: that.globalData.ver,
+                    code: dt.code,
+                    encryptedData: res.encryptedData,
+                    iv: res.iv,
+                  }, data => {
+                    that.globalData.userInfo = data.user
+                    that.globalData.token = data.token
+                    wx.setStorageSync('token', data.token)
+                    wx.hideLoading()
+                    typeof cb === 'function' && cb()
+                  }, 'POST', false)
+                }
+              })
+            }
+          })
         }
       }
     })
