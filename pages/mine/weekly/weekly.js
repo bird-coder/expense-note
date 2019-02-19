@@ -123,7 +123,7 @@ Page({
   
   switchWeekly: function () {
     if (this.data.type == 1) this.setData({type: 0})
-    this.initCharts(this.data.daily.charts)
+    this.initCharts(this.data.charts)
   },
   switchDaily: function () {
     let that = this
