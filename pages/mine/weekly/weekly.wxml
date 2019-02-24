@@ -1,6 +1,7 @@
 <!--pages/mine/weekly/weekly.wxml-->
 <view class="userinfo">
   <image class='bg' src='{{image}}' mode='aspectFill'></image>
+  <text class='history' bindtap='visitHistory'>历史周报</text>
   <view class='header'>
     <block wx:if="{{type == 0}}">
       本周数据统计
@@ -73,5 +74,5 @@
   <view class='spacing_view'></view>
 </view>
 </block>
-<view wx:else class='no-data'>暂无数据！</view>
+<view wx:else class='no-data iconfont icon-guzhangzhuangtai'>暂无数据！</view>
 </view>

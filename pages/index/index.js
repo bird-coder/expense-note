@@ -195,6 +195,7 @@ Page({
       app.startClearTimer(this.clearCount)
       this.stopBluetoothDevicesDiscovery()
       this.getBLEDeviceServices(checkedId)
+      this.onBLEConnectionStateChange()
     }
   },
   //打开蓝牙
@@ -222,10 +223,30 @@ Page({
           wx.onBluetoothAdapterStateChange(function (res) {
             console.log('onBluetoothAdapterStateChange', res)
             if (res.available) {
-              that.startBluetoothDevicesDiscovery()
+              if (that.data.searching) that.startBluetoothDevicesDiscovery()
             }
           })
         }
+      }
+    })
+  },
+  //监听蓝牙连接状态
+  onBLEConnectionStateChange() {
+    let that = this
+    wx.onBLEConnectionStateChange(function(res) {
+      console.log('连接断开')
+      if (!res.connected){
+        wx.showToast({
+          title: '连接已断开',
+          image: '../../images/ad_close.png',
+          duration: 2000,
+          success: function() {
+            app.stopTimer(app.globalData.timer)
+            app.stopTimer(app.globalData.clearTimer)
+            app.updateUserSports()
+            that.closeBluetoothAdapter()
+          }
+        })
       }
     })
   },

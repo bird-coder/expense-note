@@ -1,0 +1,38 @@
+<!--pages/mine/weekly/historyWeekly/index.wxml-->
+<view class="userinfo">
+  <image class='bg' src='{{image}}' mode='aspectFill'></image>
+  <view class='header'>
+      一周数据统计
+      <text style='font-size: 14px;' wx:if="{{start && end}}">（{{start}} 至 {{end}}）</text>
+  </view>
+  <view class='count'>
+    <view>
+      <text>运动时间</text>
+      <text class='data'>{{list.duration.num}}h</text>
+      <text>同比增长</text>
+      <text class='data'>{{list.duration.num - list.duration.old}}h\n（{{list.duration.rate}}）</text>
+    </view>
+    <view>
+      <text>步数</text>
+      <text class='data'>{{list.step.num}}步</text>
+      <text>同比增长</text>
+      <text class='data'>{{list.step.num - list.step.old}}步\n（{{list.step.rate}}）</text>
+    </view>
+    <view>
+      <text>消耗卡路里</text>
+      <text class='data'>{{list.consume.num}}大卡</text>
+      <text>同比增长</text>
+      <text class='data'>{{list.consume.num - list.consume.old}}大卡\n（{{list.consume.rate}}）</text>
+    </view>
+  </view>
+</view>
+<view class='list'>
+<block wx:if="{{hasCharts}}">
+<view wx:for="{{charts}}" wx:key="index" class='item'>
+  <view>{{item.title}}</view>
+  <canvas canvas-id="{{item.id}}" disable-scroll="true" class="canvas"></canvas>
+  <view class='spacing_view'></view>
+</view>
+</block>
+<view wx:else class='no-data'>暂无数据！</view>
+</view>

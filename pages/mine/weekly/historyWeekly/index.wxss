@@ -1,4 +1,4 @@
-/* pages/mine/weekly/weekly.wxss */
+/* pages/mine/weekly/historyWeekly/index.wxss */
 .userinfo {
   position: relative;
   min-height: 400rpx;
@@ -48,39 +48,4 @@
 .no-data {
   margin-top: 30%;
   font-size: 16px;
-  color: gray;
-}
-.tab {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  padding-top: 10px;
-}
-.tabBtn {
-  display: flex;
-  flex-direction: row;
-  text-align: center;
-  border: 1px solid rgb(19, 164, 248);
-  background-color: #fff;
-  border-radius: 5px;
-}
-.tabBtn view {
-  width: 70px;
-  font-size: 12px;
-  padding: 2px;
-}
-.active {
-  background-color: rgb(19, 164, 248);
-}
-.history {
-  position: absolute;
-  right: -5rpx;
-  top: 70rpx;
-  color: #fff;
-  background-color: rgb(19, 164, 248);
-  padding: 5rpx;
-  padding-left: 10rpx;
-  padding-right: 30rpx;
-  border-radius: 10rpx;
-  text-shadow: rgba(0, 0, 0, 0.9) 0px 1px 2px;
 }

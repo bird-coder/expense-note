@@ -138,10 +138,10 @@ App({
     }
   },
   //分享内容
-  getShare: function () {
+  getShare: function (title) {
     return {
-      title: '今天的健身计划完成了吗？',
-      imageUrl: 'https://mm.shmxplay.com/cdn/gamebox/1.png',
+      title: title || '今天的健身计划完成了吗？',
+      imageUrl: 'https://ble.jltop.top/client/images/timg.jpg',
     }
   },
   login: function(cb) {
@@ -212,6 +212,14 @@ App({
       typeof cb === 'function' && cb()
     }, 'POST')
   },
+  getHistoryList: function (cb) {
+    let that = this
+    let token = wx.getStorageSync('token')
+    that.wxRequest('getHistoryList', { token: token }, data => {
+      that.globalData.historyList = data.list
+      typeof cb === 'function' && cb()
+    }, 'POST')
+  },
   //请求服务器
   wxRequest: function (url, params, cb, type = 'GET', isHide = true) {
     console.log(params)
@@ -266,6 +274,7 @@ App({
     weekly: null,
     weeklyUpdateTime: null,
     historyWeekly: null,
+    historyList: null,
     trainning: false,
   },
   onShow: function() {

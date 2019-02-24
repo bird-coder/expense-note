@@ -1,0 +1,16 @@
+<!--pages/mine/weekly/history/history.wxml-->
+<view wx:for="{{list}}" wx:for-index="idx" wx:for-item="years" wx:key="idx">
+  <view class='list'>
+    <text class='title'>{{years.title}}年</text>
+    <view wx:for="{{years.data}}" wx:key="index" class='item' data-start='{{item.start}}' data-end='{{item.end}}' bindtap='visitWeekly'>
+      <view class='desc'>
+        <text>第{{item.index}}周</text>
+        <text class='time'>{{item.start}} 至 {{item.end}}</text>
+      </view>
+      <view style='flex: 1;'></view>
+      <view class='icon'>查看详情<text class='iconfont icon-you'></text></view>
+    </view>
+  </view>
+  <view class='spacing_view'></view>
+</view>
+<view wx:if="{{!hasData}}" class='no-data iconfont icon-guzhangzhuangtai'>暂无数据！</view>

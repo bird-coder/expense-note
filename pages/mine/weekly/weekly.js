@@ -146,6 +146,11 @@ Page({
       that.initCharts(that.data.daily.charts, 1)
     }
   },
+  visitHistory: function () {
+    wx.navigateTo({
+      url: './history/history',
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

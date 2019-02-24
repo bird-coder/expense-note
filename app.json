@@ -9,7 +9,9 @@
     "pages/mine/config/config",
     "pages/mine/feedback/feedback",
     "pages/mine/program/program",
-    "pages/auth/auth"
+    "pages/auth/auth",
+    "pages/mine/weekly/history/history",
+    "pages/mine/weekly/historyWeekly/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
