@@ -107,7 +107,8 @@ Page({
         },
         yAxis: {
           title: charts[i]['unit'],
-          min: 0
+          min: 0,
+          max: utils.getArrSum(charts[i]['series'][0]['data']) == 0 ? 1 : null
         },
         width: windowWidth,
         height: 200,

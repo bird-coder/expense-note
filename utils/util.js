@@ -35,6 +35,14 @@ const getMonday = (num = 0) => {
   return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
 }
 
+const getArrSum = (arr) => {
+  let res = 0
+  for (let i = 0; i < arr.length; i++){
+    res += arr[i]
+  }
+  return res
+}
+
 const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
@@ -114,6 +122,7 @@ module.exports = {
   timeToHour: timeToHour,
   getTimeStamp: getTimeStamp,
   getMonday: getMonday,
+  getArrSum: getArrSum,
   max: max,
   len: len,
   inArray: inArray,

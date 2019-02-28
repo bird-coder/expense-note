@@ -38,7 +38,7 @@ Page({
         if (deviceData.slice(0, 4) !== 'aa55') return
         let deviceName = deviceData.slice(4)
         switch (deviceName){
-          case '020101': device.name = '踏步机';break;
+          case '020101': device.name = '健腹机';break;
         }
         const foundDevices = this.data.devices
         const idx = utils.inArray(foundDevices, 'deviceId', device.deviceId)
