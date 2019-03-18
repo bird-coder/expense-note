@@ -1,5 +1,6 @@
 // pages/mine/weekly/historyWeekly/index.js
 const app = getApp()
+const utils = require('../../../../utils/util.js')
 const wxCharts = require('../../../../utils/wxcharts-min.js')
 
 Page({
@@ -97,7 +98,8 @@ Page({
         },
         yAxis: {
           title: charts[i]['unit'],
-          min: 0
+          min: 0,
+          max: utils.getArrSum(charts[i]['series'][0]['data']) == 0 ? 1 : null
         },
         width: windowWidth,
         height: 200,
