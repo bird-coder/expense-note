@@ -13,25 +13,25 @@ Page({
     ename: 'weekly',
     image: '../../../../images/weekly.jpg',
     list: {
-      'duration': { num: 30, old: 28, rate: '10.00%' },
-      'step': { num: 2100, old: 1950, rate: '5.00%' },
-      'consume': { num: 3000, old: 2500, rate: '8.00%' }
+      'duration': { num: '0.00', old: '0.00', rate: '0.00%' },
+      'step': { num: 0, old: 0, rate: '0.00%' },
+      'consume': { num: '0.0', old: '0.0', rate: '0.00%' }
     },
     charts: {
       'duration': {
-        id: 'durationCharts', categories: [1, 2, 3, 4, 5, 6], series: [
-          { name: '运动时间', data: [50, 30, 10, 12, 46, 20] }
+        id: 'durationCharts', categories: [], series: [
+          { name: '运动时间', data: [] }
         ], unit: '时间(小时)', title: '一周运动时间统计'
       },
       'step': {
-        id: 'stepCharts', categories: [1, 2, 3, 4, 5, 6], series: [
-          { name: '步数', data: [50, 30, 10, 12, 46, 20] },
-          { name: '个数', data: [20, 36, 50, 45, 24, 10] },
+        id: 'stepCharts', categories: [], series: [
+          { name: '步数', data: [] },
+          { name: '个数', data: [] },
         ], unit: '步数(步)', title: '一周步数统计'
       },
       'consume': {
-        id: 'consumeCharts', categories: [1, 2, 3, 4, 5, 6], series: [
-          { name: '消耗卡路里', data: [50, 30, 10, 12, 46, 20] }
+        id: 'consumeCharts', categories: [], series: [
+          { name: '消耗卡路里', data: [] }
         ], unit: '卡路里(大卡)', title: '一周消耗卡路里统计'
       },
     },
