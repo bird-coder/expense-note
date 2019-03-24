@@ -138,9 +138,10 @@ App({
     }
   },
   //分享内容
-  getShare: function (title) {
+  getShare: function (title, page) {
     return {
       title: title || '今天的健身计划完成了吗？',
+      path: page || 'pages/index/index',
       imageUrl: 'https://ble.jltop.top/client/images/timg.jpg',
     }
   },
