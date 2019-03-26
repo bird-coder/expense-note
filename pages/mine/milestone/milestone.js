@@ -10,14 +10,14 @@ Page({
   data: {
     image: '../../../images/milestone.jpg',
     data: [
-      {num: '5 h', ltime: '2019-01-11', icon: 'icon-jianshen', type: '单日运动时间'},
-      { num: '2100 步', ltime: '2019-01-11', icon: 'icon-ziyuan', type: '单日步数' },
-      { num: '300 大卡', ltime: '2019-01-11', icon: 'icon-xiaohao', type: '单日消耗卡路里' },
+      // {num: '5 h', ltime: '2019-01-11', icon: 'icon-jianshen', type: '单日运动时间'},
+      // { num: '2100 步', ltime: '2019-01-11', icon: 'icon-ziyuan', type: '单日步数' },
+      // { num: '300 大卡', ltime: '2019-01-11', icon: 'icon-xiaohao', type: '单日消耗卡路里' },
     ],
     list: [
-      {duration: '30h', max_duration: '30h'},
-      { step: '2100步', max_step: '2100步' },
-      { consume: '3000大卡', max_consume: '3000大卡' },
+      {duration: '0h', max_duration: '0h'},
+      { step: '0步', max_step: '0步' },
+      { consume: '0大卡', max_consume: '0大卡' },
     ]
   },
 
