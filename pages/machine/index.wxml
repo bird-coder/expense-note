@@ -9,7 +9,7 @@
     bindtap='createBLEConnection'
     class="device_item"
     hover-class="device_item_hover">
-      <image src='../../images/running.jpg' />
+      <image src='{{item.img}}' />
       <view class='title'><text>{{item.name}}</text></view>
       <view>信号强度: {{item.RSSI}}dBm ({{utils.max(0, item.RSSI + 100)}}%)</view>
       <view>UUID: {{item.deviceId}}</view>

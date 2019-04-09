@@ -55,9 +55,9 @@ Page({
       case 0x01: 
         console.log("踏步机计数");break;
       case 0x02: 
-        console.log("健身自行车");break;
+        console.log("健腹机");break;
       case 0x03: 
-        console.log("卧推器材");break;
+        console.log("动感单车");break;
       default: console.log("器材类型错误"); return
     }
     if (this.data.trainning && !app.globalData.background) {
