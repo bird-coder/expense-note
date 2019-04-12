@@ -1,4 +1,5 @@
 // pages/machine/index.js
+const app = getApp()
 const utils = require('../../utils/util.js')
 Page({
 
@@ -38,9 +39,9 @@ Page({
         if (deviceData.slice(0, 4) !== 'aa55') return
         let deviceName = deviceData.slice(4)
         switch (deviceName){
-          case '010101': device.name = '踏步机'; device.img ='../../images/step.jpg';break;
-          case '020101': device.name = '健腹机'; device.img = '../../images/leg.jpg'; break;
-          case '030101': device.name = '动感单车'; device.img = '../../images/cycling.jpg'; break;
+          case '010101': device.name = '踏步机'; device.img ='../../images/step.jpg'; device.type = 'count'; break;
+          case '020101': device.name = '健腹机'; device.img = '../../images/leg.jpg'; device.type = 'count'; break;
+          case '030101': device.name = '动感单车'; device.img = '../../images/cycling.jpg'; device.type = 'speed'; break;
         }
         const foundDevices = this.data.devices
         const idx = utils.inArray(foundDevices, 'deviceId', device.deviceId)
@@ -59,6 +60,7 @@ Page({
     const ds = e.currentTarget.dataset
     const deviceId = ds.deviceId
     const name = ds.name
+    const type = ds.type
     let that = this
     wx.createBLEConnection({
       deviceId,
@@ -68,6 +70,7 @@ Page({
           name,
           deviceId,
         })
+        app.globalData.machine = type
         this.connectCallback(deviceId)
       },
       fail: function() {

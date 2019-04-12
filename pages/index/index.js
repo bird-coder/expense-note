@@ -10,7 +10,12 @@ Page({
     trainning: false,
     chs: [],
     total: 0,
-    isBack: false
+    speedData: {
+      speed: 0,
+      distance: 0,
+      turns: 0,
+    },
+    isBack: false,
   },
   startTrainning: function() {
     console.log('训练开始')
@@ -38,8 +43,17 @@ Page({
     }
   },
   clearCount: function() {
-    if (this.data.total > 0){
+    if (this.data.total > 0 && app.globalData.machine == 'count'){
       this.setData({ total: 0 })
+      app.updateUserSports()
+    }else if (this.speedData.distance > 0 && app.globalData.machine == 'speed') {
+      this.setData({
+        speedData: {
+          speed: 0,
+          distance: 0,
+          turns: 0,
+        }
+      })
       app.updateUserSports()
     }else{
       app.globalData.oldTime = utils.getTimeStamp()
@@ -51,24 +65,37 @@ Page({
     //大端转小端
     value = ('0000' + ((value << 8) | (value >> 8)).toString(16)).slice(-4)
     let count = parseInt(value)
+    let machine = 'count'
     switch(type){
       case 0x01: 
         console.log("踏步机计数");break;
       case 0x02: 
         console.log("健腹机");break;
       case 0x03: 
+        machine = 'speed'
         console.log("动感单车");break;
       default: console.log("器材类型错误"); return
     }
     if (this.data.trainning && !app.globalData.background) {
-      this.setData({ total: this.data.total + count })
-      let total = app.globalData.newData.count + count
-      app.globalData.newData = {
-        count: total,
-        time: utils.getTimeStamp(),
-        consume: total * 0.1,
+      if (machine == 'count') {
+        this.setData({ total: this.data.total + count })
+        let total = app.globalData.newData.count + count
+        app.globalData.newData = {
+          count: total,
+          time: utils.getTimeStamp(),
+          consume: total * 0.1,
+        }
+        app.startClearTimer(this.clearCount)
+      } else {
+        //处理单车数据
+        this.setData({
+          speedData: {
+            speed: 0,
+            distance: 0,
+            turns: 0,
+          }
+        })
       }
-      app.startClearTimer(this.clearCount)
     }
   },
   onLoad: function () {
@@ -178,6 +205,13 @@ Page({
       app.globalData.backToIndex = false
       app.startClearTimer(this.clearCount)
       this.setData({total: 0})
+      this.setData({
+        speedData: {
+          speed: 0,
+          distance: 0,
+          turns: 0,
+        }
+      })
     }
     const checkedId = wx.getStorageSync('checkedId') || null
     console.log(checkedId);
@@ -385,10 +419,16 @@ Page({
       connected: false,
       searching: false,
       trainning: false,
-      total: 0
+      total: 0,
+      speedData: {
+        speed: 0,
+        distance: 0,
+        turns: 0,
+      }
     })
     this._discoveryStarted = false
     app.globalData.trainning = false
+    app.globalData.machine = 'count'
     app.stopTimer(app.globalData.timer)
     app.stopTimer(app.globalData.clearTimer)
     app.updateUserSports()

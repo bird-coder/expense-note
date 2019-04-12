@@ -6,6 +6,7 @@
   <view wx:for="{{devices}}" wx:key="index"
     data-device-id='{{item.deviceId}}'
     data-name='{{item.name || item.localName}}'
+    data-type='{{item.type}}'
     bindtap='createBLEConnection'
     class="device_item"
     hover-class="device_item_hover">

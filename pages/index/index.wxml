@@ -2,8 +2,14 @@
 <view>
 <image class='bg' src='../../images/bg2.jpg' mode="aspectFill" />
 <view class='body'>
-<button class='start_btn' bindtap='startTrainning' wx:if="{{connected && trainning}}"><text animation="{{increaseAnimation}}">{{total}}</text></button>
-<button class='start_btn' bindtap='startTrainning' wx:elif="{{connected}}">已暂停</button>
+<block wx:if="{{connected && trainning}}">
+<button class='start_btn' bindtap='startTrainning' wx:if="{{app.globalData.machine == 'count'}}"><text animation="{{increaseAnimation}}">{{total}}</text></button>
+<button class='start_btn' bindtap='startTrainning' wx:else><text>{{total}}</text></button>
+</block>
+<block wx:elif="{{connected}}">
+<button class='start_btn' bindtap='startTrainning' wx:if="{{app.globalData.machine == 'count'}}">已暂停</button>
+<button class='start_btn' bindtap='startTrainning' wx:else>已暂停</button>
+</block>
 <button class='start_btn' bindtap='openBluetoothAdapter' wx:else>{{searching ? '搜索中。。。' : '开始'}}</button>
 <view class='iconfont icon-shouzhi finger' animation="{{fingerAnimation}}"></view>
 <view class='info' wx:if="{{connected}}">{{trainning ? '再次点击按钮暂停' : '点击按钮继续'}}</view>

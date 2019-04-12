@@ -122,17 +122,39 @@ App({
   updateUserSports: function () {
     let that = this
     if (that.globalData.newData.time && that.globalData.newData.time > that.globalData.oldTime){
-      that.wxRequest('updateUserSports', {
-        token: that.globalData.token,
-        type: 1,
-        count: that.globalData.newData.count,
-        duration: that.globalData.newData.time - that.globalData.oldTime,
-        consume: that.globalData.newData.consume,
-      }, data => {
-        console.log('数据汇报结果：' + data.msg)
-        that.globalData.oldTime = that.globalData.newData.time
-        that.globalData.newData = {count: 0, time: null, consume: 0}
-      }, 'POST')
+      if (that.globalData.machine == 'count') {
+        that.wxRequest('updateUserSports', {
+          token: that.globalData.token,
+          type: 1,
+          count: that.globalData.newData.count,
+          duration: that.globalData.newData.time - that.globalData.oldTime,
+          consume: that.globalData.newData.consume,
+        }, data => {
+          console.log('count数据汇报结果：' + data.msg)
+          that.globalData.oldTime = that.globalData.newData.time
+          that.globalData.newData = { count: 0, time: null, consume: 0 }
+        }, 'POST')
+      } else {
+        that.wxRequest('updateUserSports', {
+          token: that.globalData.token,
+          type: 2,
+          distance: that.globalData.speedData.distance,
+          duration: that.globalData.speedData.time - that.globalData.oldTime,
+          consume: that.globalData.speedData.consume,
+          maxSpeed: that.globalData.speedData.maxSpeed,
+          turns: that.globalData.speedData.turns,
+        }, data => {
+          console.log('speed数据汇报结果：' + data.msg)
+          that.globalData.oldTime = that.globalData.speedData.time
+          that.globalData.speedData = {
+            speed: 0,
+            distance: 0,
+            time: null,
+            consume: 0,
+            maxSpeed: 0,
+            turns: 0, }
+        }, 'POST')
+      }
     }else{
       that.globalData.oldTime = utils.getTimeStamp()
     }
@@ -270,6 +292,14 @@ App({
       time: null,
       consume: 0,
     },
+    speedData: {
+      speed: 0,
+      distance: 0,
+      time: null,
+      consume: 0,
+      maxSpeed: 0,
+      turns: 0,
+    },
     daily: null,
     dailyUpdateTime: null,
     weekly: null,
@@ -277,6 +307,7 @@ App({
     historyWeekly: null,
     historyList: null,
     trainning: false,
+    machine: 'count',
   },
   onShow: function() {
     console.log('应用前台显示')
