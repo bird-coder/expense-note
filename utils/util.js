@@ -66,6 +66,10 @@ const inArray = (arr, key, val) => {
   return -1;
 }
 
+const bigToSmall = (value) => {
+  return parseInt(('0000' + ((value << 8) | (value >> 8)).toString(16)).slice(-4), 16)
+}
+
 const ab2hex = (buffer) => {
   var hexArr = Array.prototype.map.call(
     new Uint8Array(buffer),
@@ -126,6 +130,7 @@ module.exports = {
   max: max,
   len: len,
   inArray: inArray,
+  bigToSmall: bigToSmall,
   ab2hex: ab2hex,
   checkSign: checkSign,
   decodeBuffer: decodeBuffer,

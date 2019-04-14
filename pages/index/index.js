@@ -61,10 +61,6 @@ Page({
   },
   increaseCount: function(num) {
     let type = parseInt(num.substr(0, 2), 16)
-    let value = parseInt(num.substr(2), 16)
-    //大端转小端
-    value = ('0000' + ((value << 8) | (value >> 8)).toString(16)).slice(-4)
-    let count = parseInt(value)
     let machine = 'count'
     switch(type){
       case 0x01: 
@@ -78,6 +74,8 @@ Page({
     }
     if (this.data.trainning && !app.globalData.background) {
       if (machine == 'count') {
+        let value = parseInt(num.substr(2), 16)
+        let count = utils.bigToSmall(value)
         this.setData({ total: this.data.total + count })
         let total = app.globalData.newData.count + count
         app.globalData.newData = {
@@ -87,14 +85,33 @@ Page({
         }
         app.startClearTimer(this.clearCount)
       } else {
+        let length = parseInt(num.substr(2, 2), 16)
+        let val1 = parseInt(num.substr(4, length), 16)
+        let val2 = parseInt(num.substr(4+length, length), 16)
+        let speed = utils.bigToSmall(val1)
+        let turns = utils.bigToSmall(val2)
+        let distance = parseFloat((speed / 3600).toFixed(2))
+        console.log('speed', distance)
         //处理单车数据
+        let distance2 = parseFloat((this.data.speedData.distance + distance).toFixed(2))
         this.setData({
           speedData: {
-            speed: 0,
-            distance: 0,
-            turns: 0,
+            speed: speed,
+            distance: distance2,
+            turns: turns,
           }
         })
+        let total = parseFloat((app.globalData.speedData.distance + distance).toFixed(2))
+        let maxSpeed = speed > app.globalData.speedData.maxSpeed ? speed : app.globalData.speedData.maxSpeed
+        app.globalData.speedData = {
+          speed: speed,
+          distance: total,
+          time: utils.getTimeStamp(),
+          consume: total * 20,
+          maxSpeed: maxSpeed,
+          turns: turns,
+        }
+        app.startClearTimer(this.clearCount)
       }
     }
   },
