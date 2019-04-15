@@ -26,6 +26,12 @@
       <text class='data'>{{list.step.num - list.step.old}}步\n（{{list.step.rate}}）</text>
     </view>
     <view>
+      <text>骑行里程</text>
+      <text class='data'>{{list.distance.num}}km</text>
+      <text>同比增长</text>
+      <text class='data'>{{list.distance.num - list.distance.old}}km\n（{{list.distance.rate}}）</text>
+    </view>
+    <view>
       <text>消耗卡路里</text>
       <text class='data'>{{list.consume.num}}大卡</text>
       <text>同比增长</text>
@@ -44,6 +50,12 @@
       <text class='data'>{{daily.list.step.num}}步</text>
       <text>同比增长</text>
       <text class='data'>{{daily.list.step.num - daily.list.step.old}}步\n（{{daily.list.step.rate}}）</text>
+    </view>
+    <view>
+      <text>骑行里程</text>
+      <text class='data'>{{daily.list.distance.num}}km</text>
+      <text>同比增长</text>
+      <text class='data'>{{daily.list.distance.num - daily.list.distance.old}}km\n（{{daily.list.distance.rate}}）</text>
     </view>
     <view>
       <text>消耗卡路里</text>

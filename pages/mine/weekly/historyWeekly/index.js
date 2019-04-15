@@ -15,6 +15,7 @@ Page({
     list: {
       'duration': { num: '0.00', old: '0.00', rate: '0.00%' },
       'step': { num: 0, old: 0, rate: '0.00%' },
+      'distance': { num: '0.00', old: '0.00', rate: '0.00%' },
       'consume': { num: '0.0', old: '0.0', rate: '0.00%' }
     },
     charts: {
@@ -28,6 +29,12 @@ Page({
           { name: '步数', data: [] },
           { name: '个数', data: [] },
         ], unit: '步数(步)', title: '一周步数统计'
+      },
+      'distance': {
+        id: 'distanceCharts', categories: [], series: [
+          { name: '骑行里程', data: [] },
+          { name: '个数', data: [] },
+        ], unit: '骑行里程(km)', title: '一周骑行里程统计'
       },
       'consume': {
         id: 'consumeCharts', categories: [], series: [

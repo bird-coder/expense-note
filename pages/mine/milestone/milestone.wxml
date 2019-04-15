@@ -19,6 +19,12 @@
       <text class='data'>{{list.step.max}}</text>
     </view>
     <view>
+      <text>骑行里程(总)</text>
+      <text class='data'>{{list.distance.total}}</text>
+      <text>骑行里程(max)</text>
+      <text class='data'>{{list.distance.max}}</text>
+    </view>
+    <view>
       <text>消耗卡路里(总)</text>
       <text class='data'>{{list.consume.total}}</text>
       <text>消耗卡路里(max)</text>

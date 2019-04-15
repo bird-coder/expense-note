@@ -29,13 +29,15 @@ Page({
       this.setData({
         data: [
           { num: utils.timeToHour(app.globalData.userInfo.max_duration) + ' h', ltime: utils.formatDate(new Date(app.globalData.userInfo.mdtime * 1000)), icon: 'icon-jianshen', type: '单日运动时间', state: app.globalData.userInfo.max_duration ? true : false},
-          { num: app.globalData.userInfo.max_step + ' 步', ltime: utils.formatDate(new Date(app.globalData.userInfo.mstime * 1000)), icon: 'icon-ziyuan', type: '单日步数', state: app.globalData.userInfo.max_step ? true : false },
-          { num: app.globalData.userInfo.max_consume + ' 大卡', ltime: utils.formatDate(new Date(app.globalData.userInfo.mctime * 1000)), icon: 'icon-xiaohao', type: '单日消耗卡路里', state: app.globalData.userInfo.max_consume ? true : false },
-          { num: app.globalData.userInfo.max_speed + ' km/h', ltime: utils.formatDate(new Date(app.globalData.userInfo.mctime * 1000)), icon: 'icon-shijian1', type: '最大骑行速度', state: app.globalData.userInfo.max_speed ? true : false },
+          { num: app.globalData.userInfo.max_step + ' 步', ltime: utils.formatDate(new Date(app.globalData.userInfo.mstime * 1000)), icon: 'icon-ziyuan', type: '单日步数', state: app.globalData.userInfo.max_step > 0 ? true : false },
+          { num: app.globalData.userInfo.max_distance + ' km', ltime: utils.formatDate(new Date(app.globalData.userInfo.mdstime * 1000)), icon: 'icon-weizhi', type: '单日骑行里程', state: app.globalData.userInfo.max_distance > 0 ? true : false },
+          { num: app.globalData.userInfo.max_consume + ' 大卡', ltime: utils.formatDate(new Date(app.globalData.userInfo.mctime * 1000)), icon: 'icon-xiaohao', type: '单日消耗卡路里', state: app.globalData.userInfo.max_consume > 0 ? true : false },
+          { num: app.globalData.userInfo.max_speed + ' km/h', ltime: utils.formatDate(new Date(app.globalData.userInfo.mctime * 1000)), icon: 'icon-shijian1', type: '最大骑行速度', state: app.globalData.userInfo.max_speed > 0 ? true : false },
         ],
         list: {
           duration: { total: utils.timeToHour(app.globalData.userInfo.duration) + 'h', max: utils.timeToHour(app.globalData.userInfo.max_duration) + 'h'},
           step: { total: app.globalData.userInfo.step + '步', max: app.globalData.userInfo.max_step + '步' },
+          distance: { total: app.globalData.userInfo.distance + 'km', max: app.globalData.userInfo.max_distance + 'km' },
           consume: { total: app.globalData.userInfo.consume + '大卡', max: app.globalData.userInfo.max_consume + '大卡' },
         }
       })

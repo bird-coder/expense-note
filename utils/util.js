@@ -38,7 +38,7 @@ const getMonday = (num = 0) => {
 const getArrSum = (arr) => {
   let res = 0
   for (let i = 0; i < arr.length; i++){
-    res += arr[i]
+    res += parseFloat(arr[i])
   }
   return res
 }
