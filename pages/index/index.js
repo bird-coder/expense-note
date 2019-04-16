@@ -46,7 +46,7 @@ Page({
     if (this.data.total > 0 && app.globalData.machine == 'count'){
       this.setData({ total: 0 })
       app.updateUserSports()
-    }else if (this.speedData.distance > 0 && app.globalData.machine == 'speed') {
+    }else if (this.data.speedData.distance > 0 && app.globalData.machine == 'speed') {
       this.setData({
         speedData: {
           speed: 0,
@@ -101,17 +101,19 @@ Page({
             turns: turns,
           }
         })
-        let total = parseFloat((app.globalData.speedData.distance + distance).toFixed(2))
-        let maxSpeed = speed > app.globalData.speedData.maxSpeed ? speed : app.globalData.speedData.maxSpeed
-        app.globalData.speedData = {
-          speed: speed,
-          distance: total,
-          time: utils.getTimeStamp(),
-          consume: total * 20,
-          maxSpeed: maxSpeed,
-          turns: turns,
+        if (speed > 0 && distance > 0) {
+          let total = parseFloat((app.globalData.speedData.distance + distance).toFixed(2))
+          let maxSpeed = speed > app.globalData.speedData.maxSpeed ? speed : app.globalData.speedData.maxSpeed
+          app.globalData.speedData = {
+            speed: speed,
+            distance: total,
+            time: utils.getTimeStamp(),
+            consume: total * 20,
+            maxSpeed: maxSpeed,
+            turns: turns,
+          }
+          app.startClearTimer(this.clearCount)
         }
-        app.startClearTimer(this.clearCount)
       }
     }
   },
