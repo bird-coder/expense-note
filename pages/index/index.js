@@ -16,6 +16,7 @@ Page({
       turns: 0,
     },
     isBack: false,
+    machine: 'count'
   },
   startTrainning: function() {
     console.log('训练开始')
@@ -220,6 +221,7 @@ Page({
     }.bind(that), 500)
   },
   onShow: function() {
+    if (app.globalData.machine != this.data.machine) this.setData({machine: app.globalData.machine})
     if (app.globalData.backToIndex){
       app.globalData.backToIndex = false
       app.startClearTimer(this.clearCount)
@@ -443,7 +445,8 @@ Page({
         speed: 0,
         distance: 0,
         turns: 0,
-      }
+      },
+      machine: 'count'
     })
     this._discoveryStarted = false
     app.globalData.trainning = false

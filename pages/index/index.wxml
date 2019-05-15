@@ -3,7 +3,7 @@
 <image class='bg' src='../../images/bg2.jpg' mode="aspectFill" />
 <view class='body'>
 <block wx:if="{{connected && trainning}}">
-<button class='start_btn' bindtap='startTrainning' wx:if="{{app.globalData.machine == 'count'}}"><text animation="{{increaseAnimation}}">{{total}}</text></button>
+<button class='start_btn' bindtap='startTrainning' wx:if="{{machine == 'count'}}"><text animation="{{increaseAnimation}}">{{total}}</text></button>
 <view class='start_btn2' bindtap='startTrainning' wx:else>
   <image class='disc' src='../../images/disc.png' mode='aspectFit' />
   <view class='speedView'>
@@ -15,7 +15,7 @@
 </view>
 </block>
 <block wx:elif="{{connected}}">
-<button class='start_btn' bindtap='startTrainning' wx:if="{{app.globalData.machine == 'count'}}">已暂停</button>
+<button class='start_btn' bindtap='startTrainning' wx:if="{{machine == 'count'}}">已暂停</button>
 <view class='start_btn2' bindtap='startTrainning' wx:else>
   <image class='disc' src='../../images/disc.png' mode='aspectFit' />
   <view class='speedView'>
