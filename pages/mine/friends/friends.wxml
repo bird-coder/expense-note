@@ -1,0 +1,6 @@
+<!--pages/mine/friends/friends.wxml-->
+<view class='content'>
+  <view>扫描下方的二维码加入交流群吧！</view>
+  <view>群号：797535472</view>
+  <image src='https://ble.jltop.top/client/images/ewm.jpeg' mode='aspectFit' bindtap='showImage' />
+</view>

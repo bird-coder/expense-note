@@ -11,7 +11,8 @@
     "pages/mine/program/program",
     "pages/auth/auth",
     "pages/mine/weekly/history/history",
-    "pages/mine/weekly/historyWeekly/index"
+    "pages/mine/weekly/historyWeekly/index",
+    "pages/mine/friends/friends"
   ],
   "window": {
     "backgroundTextStyle": "light",

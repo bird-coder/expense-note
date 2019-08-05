@@ -16,7 +16,8 @@ Page({
       turns: 0,
     },
     isBack: false,
-    machine: 'count'
+    machine: 'count',
+    isShow: false
   },
   startTrainning: function() {
     console.log('训练开始')
@@ -457,5 +458,16 @@ Page({
   },
   onShareAppMessage: function () {
     return app.getShare();
+  },
+  showCode: function () {
+    this.setData({isShow: !this.data.isShow})
+  },
+  hideCode: function () {
+    this.setData({isShow: false})
+  },
+  showImage: function () {
+    wx.previewImage({
+      urls: ['https://ble.jltop.top/client/images/ewm.jpeg'],
+    })
   }
 })

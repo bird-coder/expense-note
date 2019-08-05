@@ -34,5 +34,19 @@
 <button class='share-button' open-type="share">
   <image animation='{{shareAnimation}}' src='../../images/share.png' />
 </button>
+<!-- <view class='r-list'>
+  <button bindtap='showCode'>
+    <image class='qq' src='../../images/qq.jpg' mode='scaleToFill' />
+  </button>
+  <view class='info'>qq群</view>
+</view>
+<view class='toast' wx:if="{{isShow}}">
+  <view class='toast-content'>
+    <view>扫描下方的二维码加入交流群吧！</view>
+    <view>群号：797535472</view>
+    <image src='https://ble.jltop.top/client/images/ewm.jpeg' mode='aspectFit' bindtap='showImage' />
+  </view>
+  <view class='toast-view' bindtap='hideCode'></view>
+</view> -->
 </view>
 </view>
