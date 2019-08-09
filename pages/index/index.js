@@ -16,8 +16,7 @@ Page({
       turns: 0,
     },
     isBack: false,
-    machine: 'count',
-    isShow: false
+    machine: 'count'
   },
   startTrainning: function() {
     console.log('训练开始')
@@ -255,8 +254,9 @@ Page({
     }
   },
   //打开蓝牙
-  openBluetoothAdapter() {
+  openBluetoothAdapter(e) {
     console.log('开始搜索')
+    if (app.globalData.formIds.length < 20) app.globalData.formIds.push(e.detail.formId)
     let that = this
     if (this.data.searching){
       this._discoveryStarted = false
@@ -434,7 +434,9 @@ Page({
     })
   },
   //关闭蓝牙
-  closeBluetoothAdapter() {
+  closeBluetoothAdapter(e) {
+    console.log(e.detail)
+    if (app.globalData.formIds.length < 20) app.globalData.formIds.push(e.detail.formId)
     wx.closeBluetoothAdapter()
     wx.clearStorageSync('checkedId')
     this.setData({
@@ -459,15 +461,11 @@ Page({
   onShareAppMessage: function () {
     return app.getShare();
   },
-  showCode: function () {
-    this.setData({isShow: !this.data.isShow})
-  },
-  hideCode: function () {
-    this.setData({isShow: false})
-  },
-  showImage: function () {
-    wx.previewImage({
-      urls: ['https://ble.jltop.top/client/images/ewm.jpeg'],
+  formSubmit: function (e) {
+    console.log(e.detail)
+    let that = this
+    app.wxRequest('sendTestMsg', {formId: e.detail.formId}, data => {
+      console.log(data)
     })
   }
 })

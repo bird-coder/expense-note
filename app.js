@@ -241,6 +241,15 @@ App({
       typeof cb === 'function' && cb()
     }, 'POST')
   },
+  uploadFormID: function () {
+    if (this.globalData.formIds.length == 0) return
+    let form_ids = this.globalData.formIds.join(';')
+    let that = this
+    let token = wx.getStorageSync('token')
+    that.wxRequest('uploadFormID', { token: token, form_ids: form_ids }, data => {
+      that.globalData.formIds = []
+    }, 'POST')
+  },
   //请求服务器
   wxRequest: function (url, params, cb, type = 'GET', isHide = true) {
     console.log(params)
@@ -306,6 +315,7 @@ App({
     historyList: null,
     trainning: false,
     machine: 'count',
+    formIds: [],
   },
   onShow: function() {
     console.log('应用前台显示')
@@ -326,6 +336,7 @@ App({
     this.stopTimer(this.globalData.timer)
     this.stopTimer(this.globalData.clearTimer)
     this.updateUserSports()
+    this.uploadFormID()
   },
   onError: function(msg) {
     this.wxRequest('feedback', { text: msg, }, null, 'POST')

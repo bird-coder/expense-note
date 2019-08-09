@@ -48,7 +48,7 @@ Page({
     const ds = e.currentTarget.dataset
     const id = ds.id
     console.log(id)
-    if ([2,3].indexOf(id*1) != -1) {
+    if ([3].indexOf(id*1) != -1) {
       wx.showToast({
         title: '此功能暂未开放，敬请期待！',
         duration: 2000

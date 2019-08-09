@@ -25,12 +25,16 @@
   </view>
 </view>
 </block>
-<button class='start_btn' bindtap='openBluetoothAdapter' wx:else>{{searching ? '搜索中。。。' : '开始'}}</button>
+<form bindsubmit='openBluetoothAdapter' report-submit='ture' style='margin-top: 50%;' wx:else>
+<button class='start_btn' style='margin-top:0;' form-type='submit'>{{searching ? '搜索中。。。' : '开始'}}</button>
+</form>
 <view class='iconfont icon-shouzhi finger' animation="{{fingerAnimation}}"></view>
 <view class='info' wx:if="{{connected}}">{{trainning ? '再次点击按钮暂停' : '点击按钮继续'}}</view>
 <view class='info' wx:elif="{{searching}}">点击按钮可暂停</view>
 <view class='info' wx:else>点击按钮开始</view>
-<button class='button blue' hover-class='button_hover' bindtap="closeBluetoothAdapter"><view class='shine'></view>重置</button>
+<form bindsubmit='closeBluetoothAdapter' report-submit='true'>
+<button class='button blue' hover-class='button_hover' form-type='submit'><view class='shine'></view>重置</button>
+</form>
 <button class='share-button' open-type="share">
   <image animation='{{shareAnimation}}' src='../../images/share.png' />
 </button>
@@ -48,5 +52,8 @@
   </view>
   <view class='toast-view' bindtap='hideCode'></view>
 </view> -->
+<!-- <form bindsubmit='formSubmit' report-submit='true' bindreset='formReset'>
+  <button form-type='submit'>提交</button>
+</form> -->
 </view>
 </view>
