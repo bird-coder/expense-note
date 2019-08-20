@@ -1,2 +1,40 @@
 <!--pages/mine/program/program.wxml-->
-<text>pages/mine/program/program.wxml</text>
+<view>
+  <view class='notice' wx:if='{{plans.length > 0}}'>长按编辑训练计划</view>
+  <scroll-view class='list' scroll-y scroll-with-animation>
+    <view wx:for="{{plans}}" wx:key="index"
+      data-id='{{item.id}}'
+      data-index='{{index}}'
+      bindtap='checkPlan'
+      bindlongtap='editPlan'>
+      <view wx:if='{{index==idx}}' class="item active">
+        <view class='row'>
+          <view class='title'><text>{{item.title}}</text></view>
+          <view class='fill'></view>
+          <view>训练时间：{{item.ctime}}</view>
+        </view>
+        <view class='row'>
+          <text>目标训练量：{{item.target}}</text>
+          <view class='fill'></view>
+          <text>已完成训练量：{{item.num}}</text>
+        </view>
+        <image src='../../../images/check.jpg' mode='cover'></image>
+      </view>
+      <view wx:else class="item">
+        <view class='row'>
+          <view class='title'><text>{{item.title}}</text></view>
+          <view class='fill'></view>
+          <view>训练时间：{{item.ctime}}</view>
+        </view>
+        <view class='row'>
+          <text>目标训练量：{{item.target}}</text>
+          <view class='fill'></view>
+          <text>已完成训练量：{{item.num}}</text>
+        </view>
+      </view>
+    </view>
+    <view class='iconfont icon-addition add' bindtap='addPlan'>设置本周的训练目标</view>
+  </scroll-view>
+  <view wx:if='{{hasChange}}' class='btn active' bindtap='updatePlan'>确定</view>
+  <view wx:else class='btn'>确定</view>
+</view>
