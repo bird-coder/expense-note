@@ -14,9 +14,10 @@
           <view>训练时间：{{item.ctime}}</view>
         </view>
         <view class='row'>
-          <text>目标训练量：{{item.target}}</text>
-          <view class='fill'></view>
-          <text>已完成训练量：{{item.num}}</text>
+          训练内容：
+          <view wx:for='{{item.content}}' wx:for-index='index1' wx:for-item='item1' wx:key='index1'>
+            {{array[index1]}} -- {{item1}}个; 
+          </view>
         </view>
         <image src='../../../images/check.jpg' mode='cover'></image>
       </view>
@@ -27,9 +28,10 @@
           <view>训练时间：{{item.ctime}}</view>
         </view>
         <view class='row'>
-          <text>目标训练量：{{item.target}}</text>
-          <view class='fill'></view>
-          <text>已完成训练量：{{item.num}}</text>
+          训练内容：
+          <view wx:for='{{item.content}}' wx:for-index='index1' wx:for-item='item1' wx:key='index1'>
+            {{array[index1]}} -- {{item1}}个; 
+          </view>
         </view>
       </view>
     </view>

@@ -1,2 +1,19 @@
 <!--pages/mine/program/plan/plan.wxml-->
-<text>pages/mine/program/plan/plan.wxml</text>
+<view>
+  <view class='notice'>定制您的训练计划</view>
+  <view wx:for='{{plan}}' wx:key='{{index}}'>
+    <view class='item'>
+      <view class='pick'>{{array[index]}}</view>
+      <input class='num' type='number' maxlength='8' disabled='true' value='{{item}}'></input>
+      <view class='iconfont icon-delete close' bindtap='delItem' data-index='{{index}}'></view>
+    </view>
+  </view>
+  <view class='item'>
+    <picker class='pick' mode='selector' range='{{array}}' value='{{key}}' bindchange='checkItem'>{{key != null ? array[key] : '训练项目'}}</picker>
+    <input class='num' type='number' maxlength='8' placeholder='请输入数量' value='{{num > 0 ? num : \'\'}}' bindinput='checkItemNum'></input>
+    <view class='iconfont icon-addition add' bindtap='addItem'></view>
+  </view>
+  <picker class='timePick' mode='selector' range='{{times}}' value='{{time_key}}' bindchange='checkTime'>{{ctime ? ctime : '选择开始时间'}}</picker>
+  <view wx:if='{{hasChange}}' class='btn active' bindtap='uploadPlan'>确定</view>
+  <view wx:else class='btn'>确定</view>
+</view>

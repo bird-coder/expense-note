@@ -316,6 +316,7 @@ App({
     trainning: false,
     machine: 'count',
     formIds: [],
+    plans: [],
   },
   onShow: function() {
     console.log('应用前台显示')

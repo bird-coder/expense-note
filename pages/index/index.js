@@ -438,7 +438,7 @@ Page({
     console.log(e.detail)
     if (app.globalData.formIds.length < 20) app.globalData.formIds.push(e.detail.formId)
     wx.closeBluetoothAdapter()
-    wx.clearStorageSync('checkedId')
+    wx.removeStorageSync('checkedId')
     this.setData({
       connected: false,
       searching: false,

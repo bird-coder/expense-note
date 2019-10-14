@@ -1,2 +1,3 @@
 <!--pages/mine/advise/advise.wxml-->
-<text>pages/mine/advise/advise.wxml</text>
+<video src='https://ble.jltop.top/video1.mp4'></video>
+<!-- <web-view src='https://ble.jltop.top/advise'></web-view> -->
