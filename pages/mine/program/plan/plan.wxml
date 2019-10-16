@@ -1,6 +1,7 @@
 <!--pages/mine/program/plan/plan.wxml-->
 <view>
   <view class='notice'>定制您的训练计划</view>
+  <view class='nameView'>请输入计划名称：<input class='name' type='text' maxlength='15' placeholder='请输入训练计划名称' value='{{title}}' bindinput='addItemName'></input></view>
   <view wx:for='{{plan}}' wx:key='{{index}}'>
     <view class='item'>
       <view class='pick'>{{array[index]}}</view>

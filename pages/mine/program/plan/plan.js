@@ -9,6 +9,7 @@ Page({
     plan: {},
     array: [],
     key: null,
+    title: '',
     num: 0,
     hasChange: false,
     index: null,
@@ -60,6 +61,15 @@ Page({
   },
 
   /**
+   * 输入训练计划名称
+   */
+  addItemName: function (e) {
+    console.log(e)
+    let title = e.detail.value
+    if (this.data.title != title) this.setData({ title: title, hasChange: true })
+  },
+
+  /**
    * 选择训练开始时间
    */
   checkTime: function (e) {
@@ -73,6 +83,13 @@ Page({
    */
   uploadPlan: function () {
     console.log(this.data.plan)
+    if (this.data.title == '') {
+      wx.showToast({
+        title: '请输入计划名称',
+        duration: 2000
+      })
+      return
+    }
     if (this.data.time_key == null) {
       wx.showToast({
         title: '请选择开始时间',
@@ -93,7 +110,7 @@ Page({
     if (this.data.index != null && app.globalData.plans[this.data.index]) {
       id = app.globalData.plans[this.data.index].id
     }
-    app.wxRequest('addUserClick', { token: token, content: this.data.plan, ctime: this.data.ctime, title: '综合训练', id: id}, data => {
+    app.wxRequest('addUserClick', { token: token, content: this.data.plan, ctime: this.data.ctime, title: this.data.title, id: id}, data => {
       for (let i in app.globalData.plans) app.globalData.plans[i].state = 0
       if (id == 0) app.globalData.plans.push(data.data)
       else app.globalData.plans[that.data.index] = data.data
@@ -121,7 +138,7 @@ Page({
     let index = options.index
     if (app.globalData.plans[index]) {
       let time_key = this.data.times.indexOf(app.globalData.plans[index].ctime)
-      this.setData({ plan: app.globalData.plans[index].content, time_key: time_key, ctime: app.globalData.plans[index].ctime, index: index})
+      this.setData({ plan: app.globalData.plans[index].content, title: app.globalData.plans[index].title, time_key: time_key, ctime: app.globalData.plans[index].ctime, index: index})
     }
     console.log(app.globalData.configs)
     if (app.globalData.configs['sports_item']) {

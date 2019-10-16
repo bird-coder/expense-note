@@ -6,7 +6,7 @@
   margin-top: 20rpx;
 }
 .notice {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 30px;
   margin-left: 30rpx;
   margin-right: 30rpx;
@@ -19,6 +19,7 @@
   flex: 1;
 }
 .notice .advise {
+  font-size: 14px;
   color: rgb(56, 133, 248);
 }
 .list {

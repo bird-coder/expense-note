@@ -1,8 +1,22 @@
 /* pages/mine/program/plan/plan.wxss */
 .notice {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 30px;
   margin-left: 30rpx;
+  color: #666;
+}
+.nameView {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 20px;
+  color: rgb(252, 51, 16);
+}
+.nameView .name {
+  width: 60%;
+  border-bottom: 1px solid #ccc;
+  padding-left: 5px;
+  font-size: 13px;
   color: #666;
 }
 .add {

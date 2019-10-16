@@ -1,6 +1,6 @@
 /* pages/mine/program/default/default.wxss */
 .notice {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 30px;
   margin-left: 30rpx;
   color: #666;
