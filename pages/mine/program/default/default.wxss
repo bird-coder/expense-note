@@ -1,25 +1,26 @@
-/* pages/mine/program/program.wxss */
-.add {
-  font-size: 16px;
-  color: rgb(56, 133, 248);
-  text-align: center;
-  margin-top: 20rpx;
-}
+/* pages/mine/program/default/default.wxss */
 .notice {
   font-size: 14px;
   line-height: 30px;
   margin-left: 30rpx;
-  margin-right: 30rpx;
   color: #666;
+}
+.time {
   display: flex;
   flex-direction: row;
   align-items: center;
+  font-size: 13px;
+  color: #666;
+  margin-left: 20px;
 }
-.notice .fill {
-  flex: 1;
-}
-.notice .advise {
-  color: rgb(56, 133, 248);
+.time .timePick {
+  width: 35%;
+  margin: 20px;
+  margin-left: 10px;
+  padding: 5px 10px;
+  border: 1px solid rgb(16, 204, 63);
+  border-radius: 3px;
+  font-size: 15px;
 }
 .list {
   /* display: flex;

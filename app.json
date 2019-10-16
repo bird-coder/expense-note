@@ -13,7 +13,8 @@
     "pages/mine/weekly/history/history",
     "pages/mine/weekly/historyWeekly/index",
     "pages/mine/friends/friends",
-    "pages/mine/program/plan/plan"
+    "pages/mine/program/plan/plan",
+    "pages/mine/program/default/default"
   ],
   "window": {
     "backgroundTextStyle": "light",

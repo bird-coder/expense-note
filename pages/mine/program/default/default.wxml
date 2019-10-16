@@ -1,17 +1,19 @@
-<!--pages/mine/program/program.wxml-->
+<!--pages/mine/program/default/default.wxml-->
 <view>
-  <view class='notice' wx:if='{{plans.length > 0}}'>长按编辑训练计划<view class='fill'></view><view class='advise' bindtap='goToDefault'>看看推荐？</view></view>
+  <view class='notice'>请选择一项训练计划</view>
+  <view class='time'>
+    请选择训练开始时间：
+    <picker class='timePick' mode='selector' range='{{times}}' value='{{time_key}}' bindchange='checkTime'>{{ctime ? ctime : '选择开始时间'}}</picker>
+  </view>
   <scroll-view class='list' scroll-y scroll-with-animation>
     <view wx:for="{{plans}}" wx:key="index"
       data-id='{{item.id}}'
       data-index='{{index}}'
-      bindtap='checkPlan'
-      bindlongtap='editPlan'>
+      bindtap='checkPlan'>
       <view wx:if='{{index==idx}}' class="item active">
         <view class='row'>
           <view class='title'><text>{{item.title}}</text></view>
           <view class='fill'></view>
-          <view>训练时间：{{item.ctime}}</view>
         </view>
         <view class='row'>
           训练内容：
@@ -19,13 +21,12 @@
             {{array[index1]}} -- {{item1}}个; 
           </view>
         </view>
-        <image src='../../../images/check.jpg' mode='cover'></image>
+        <image src='../../../../images/check.jpg' mode='cover'></image>
       </view>
       <view wx:else class="item">
         <view class='row'>
           <view class='title'><text>{{item.title}}</text></view>
           <view class='fill'></view>
-          <view>训练时间：{{item.ctime}}</view>
         </view>
         <view class='row'>
           训练内容：
@@ -35,8 +36,7 @@
         </view>
       </view>
     </view>
-    <view class='iconfont icon-addition add' bindtap='addPlan'>设置本周的训练目标</view>
   </scroll-view>
-  <view wx:if='{{hasChange}}' class='btn active' bindtap='updatePlan'>确定</view>
+  <view wx:if='{{hasChange}}' class='btn active' bindtap='uploadPlan'>确定</view>
   <view wx:else class='btn'>确定</view>
 </view>

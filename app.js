@@ -92,6 +92,7 @@ App({
         }, 'POST', false)
         that.getDaily()
         that.getWeekly()
+        that.getConfig()
       },
       fail: function() {
         that.globalData.overdue = true
@@ -250,6 +251,14 @@ App({
       that.globalData.formIds = []
     }, 'POST')
   },
+  //获取配置
+  getConfig: function () {
+    let that = this
+    let token = wx.getStorageSync('token')
+    that.wxRequest('getConfig', { token: token }, data => {
+      that.globalData.configs = data.list
+    }, 'GET')
+  },
   //请求服务器
   wxRequest: function (url, params, cb, type = 'GET', isHide = true) {
     console.log(params)
@@ -317,6 +326,8 @@ App({
     machine: 'count',
     formIds: [],
     plans: [],
+    default_plans: null,
+    configs: {},
   },
   onShow: function() {
     console.log('应用前台显示')

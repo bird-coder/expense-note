@@ -7,7 +7,7 @@ Page({
    */
   data: {
     plan: {},
-    array: ['开合跳','深蹲','卷腹'],
+    array: [],
     key: null,
     num: 0,
     hasChange: false,
@@ -75,7 +75,14 @@ Page({
     console.log(this.data.plan)
     if (this.data.time_key == null) {
       wx.showToast({
-        title: '请选择项目开始时间',
+        title: '请选择开始时间',
+        duration: 2000
+      })
+      return
+    }
+    if (Object.keys(this.data.plan).length == 0) {
+      wx.showToast({
+        title: '请添加项目',
         duration: 2000
       })
       return
@@ -86,7 +93,7 @@ Page({
     if (this.data.index != null && app.globalData.plans[this.data.index]) {
       id = app.globalData.plans[this.data.index].id
     }
-    app.wxRequest('addUserClick', {token: token, content: this.data.plan, ctime: this.data.ctime, id: id}, data => {
+    app.wxRequest('addUserClick', { token: token, content: this.data.plan, ctime: this.data.ctime, title: '综合训练', id: id}, data => {
       for (let i in app.globalData.plans) app.globalData.plans[i].state = 0
       if (id == 0) app.globalData.plans.push(data.data)
       else app.globalData.plans[that.data.index] = data.data
@@ -110,9 +117,22 @@ Page({
    */
   onLoad: function (options) {
     console.log(options)
+    let that = this
     let index = options.index
-    let time_key = this.data.times.indexOf(app.globalData.plans[index].ctime)
-    if (app.globalData.plans[index]) this.setData({ plan: app.globalData.plans[index].content, time_key: time_key, ctime: app.globalData.plans[index].ctime, index: index})
+    if (app.globalData.plans[index]) {
+      let time_key = this.data.times.indexOf(app.globalData.plans[index].ctime)
+      this.setData({ plan: app.globalData.plans[index].content, time_key: time_key, ctime: app.globalData.plans[index].ctime, index: index})
+    }
+    console.log(app.globalData.configs)
+    if (app.globalData.configs['sports_item']) {
+      this.setData({ array: app.globalData.configs.sports_item})
+    }else {
+      let token = wx.getStorageSync('token')
+      app.wxRequest('getConfig', {token: token}, data => {
+        that.setData({array: data.list.sports_item})
+        app.globalData.configs = data.list
+      })
+    }
   },
 
   /**

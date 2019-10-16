@@ -16,7 +16,16 @@ Page({
     idx_tmp: -1,//初始值
     hasChange: false,
     isUpdate: false,
-    array: ['开合跳', '深蹲', '卷腹'],
+    array: [],
+  },
+
+  /**
+   * 查看推荐训练计划
+   */
+  goToDefault: function () {
+    wx.navigateTo({
+      url: './default/default',
+    })
   },
 
   /**
@@ -93,6 +102,15 @@ Page({
    */
   onLoad: function (options) {
     this.getPlans()
+    if (app.globalData.configs['sports_item']) {
+      this.setData({ array: app.globalData.configs.sports_item })
+    } else {
+      let token = wx.getStorageSync('token')
+      app.wxRequest('getConfig', { token: token }, data => {
+        that.setData({ array: data.list.sports_item })
+        app.globalData.configs = data.list
+      })
+    }
   },
 
   /**
