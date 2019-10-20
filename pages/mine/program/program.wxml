@@ -1,6 +1,6 @@
 <!--pages/mine/program/program.wxml-->
 <view>
-  <view class='notice' wx:if='{{plans.length > 0}}'>长按编辑训练计划<view class='fill'></view><view class='advise' bindtap='goToDefault'>看看推荐？</view></view>
+  <view class='notice'>长按编辑训练计划<view class='fill'></view><view class='advise' bindtap='goToDefault'>看看推荐？</view></view>
   <scroll-view class='list' scroll-y scroll-with-animation>
     <view wx:for="{{plans}}" wx:key="index"
       data-id='{{item.id}}'

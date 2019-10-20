@@ -36,6 +36,7 @@ Page({
             app.globalData.userInfo = data.user
             app.globalData.token = data.token
             app.globalData.overdue = false
+            app.globalData.hasLogin = true
             wx.setStorageSync('token', data.token)
             wx.switchTab({
               url: '/pages/index/index',

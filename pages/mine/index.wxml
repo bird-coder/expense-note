@@ -2,7 +2,11 @@
 <view>
 <view class="userinfo">
   <image class='bg' src='../../images/mine.jpg' mode='aspectFill'></image>
-  <button wx:if="{{!hasUserInfo}}"class="userinfo-avatar"> <image src='../../images/user-avatar.png' mode='aspectFill'></image> </button>
+  <!-- <button wx:if="{{!hasUserInfo}}"class="userinfo-avatar" bindtap='bindLogin'> <image src='../../images/user-avatar.png' mode='aspectFill'></image> </button> -->
+  <block wx:if="{{!hasUserInfo}}">
+    <image class="userinfo-avatar" src='../../images/user-avatar.png' mode='cover' bindtap='bindLogin'></image>
+    <text class='userinfo-nickname notice'>点击登录</text>
+  </block>
   
   <block wx:else>
     <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatar || '../../images/user-avatar.png'}}" mode="cover"></image>

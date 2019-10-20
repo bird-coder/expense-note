@@ -153,9 +153,10 @@ Page({
             })
           }
         }else {
-          wx.redirectTo({
-            url: '/pages/auth/auth',
-          })
+          app.globalData.hasLogin = false
+          // wx.redirectTo({
+          //   url: '/pages/auth/auth',
+          // })
         }
       }
     })
@@ -255,6 +256,10 @@ Page({
   },
   //打开蓝牙
   openBluetoothAdapter(e) {
+    if (!app.globalData.hasLogin) {
+      app.backToLogin()
+      return
+    }
     console.log('开始搜索')
     if (app.globalData.formIds.length < 20) app.globalData.formIds.push(e.detail.formId)
     let that = this

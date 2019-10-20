@@ -31,6 +31,7 @@ Page({
       })
     } else {
       // 在没有 open-type=getUserInfo 版本的兼容处理
+      if (!app.globalData.hasLogin) return
       let token = wx.getStorageSync('token')
       let that = this
       app.wxRequest('auth', { token: token }, data => {
@@ -62,6 +63,11 @@ Page({
   bindViewTap: function() {
     wx.navigateTo({
       url: './config/config',
+    })
+  },
+  bindLogin: function() {
+    wx.redirectTo({
+      url: '/pages/auth/auth',
     })
   },
 

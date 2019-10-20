@@ -17,15 +17,7 @@ Page({
    */
   onLoad: function (options) {
     if (!app.globalData.userInfo) {
-      wx.showToast({
-        title: '请先登录！',
-        duration: 2000,
-        success: function() {
-          wx.navigateBack({
-            delta: 1
-          })
-        }
-      })
+      app.backToLogin()
       return
     }
     this.setData({

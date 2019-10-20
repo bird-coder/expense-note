@@ -78,6 +78,7 @@ App({
           title: '登录中。。。',
           mask: true,
         })
+        that.globalData.hasLogin = true
         let token = wx.getStorageSync('token')
         that.wxRequest('auth', { token: token }, data => {
           if (data.user && data.token){
@@ -259,6 +260,20 @@ App({
       that.globalData.configs = data.list
     }, 'GET')
   },
+  //返回登录
+  backToLogin: function () {
+    wx.showToast({
+      title: '请先登录！',
+      duration: 2000,
+      success: function () {
+        setTimeout(function(){
+          wx.switchTab({
+            url: '/pages/mine/index',
+          })
+        }, 1500)
+      }
+    })
+  },
   //请求服务器
   wxRequest: function (url, params, cb, type = 'GET', isHide = true) {
     console.log(params)
@@ -328,6 +343,7 @@ App({
     plans: [],
     default_plans: null,
     configs: {},
+    hasLogin: false,
   },
   onShow: function() {
     console.log('应用前台显示')

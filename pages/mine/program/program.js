@@ -23,6 +23,10 @@ Page({
    * 查看推荐训练计划
    */
   goToDefault: function () {
+    if (!app.globalData.hasLogin) {
+      app.backToLogin()
+      return
+    }
     wx.navigateTo({
       url: './default/default',
     })
@@ -32,6 +36,10 @@ Page({
    * 添加训练计划
    */
   addPlan: function () {
+    if (!app.globalData.hasLogin) {
+      app.backToLogin()
+      return
+    }
     if (this.data.plans.length >= 10) {
       wx.showToast({
         title: '最多能添加10个训练计划',
@@ -48,6 +56,10 @@ Page({
    * 编辑训练计划
    */
   editPlan: function (e) {
+    if (!app.globalData.hasLogin) {
+      app.backToLogin()
+      return
+    }
     const ds = e.currentTarget.dataset
     wx.navigateTo({
       url: './plan/plan?index='+ds.index,
@@ -70,6 +82,10 @@ Page({
    * 更新训练计划
    */
   updatePlan: function () {
+    if (!app.globalData.hasLogin) {
+      app.backToLogin()
+      return
+    }
     let id = this.data.plans[this.data.idx].id
     console.log(id)
     let that = this
@@ -105,6 +121,7 @@ Page({
     if (app.globalData.configs['sports_item']) {
       this.setData({ array: app.globalData.configs.sports_item })
     } else {
+      let that = this
       let token = wx.getStorageSync('token')
       app.wxRequest('getConfig', { token: token }, data => {
         that.setData({ array: data.list.sports_item })
