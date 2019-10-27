@@ -13,7 +13,7 @@ Page({
       { 'name': '周报', 'ename': 'weekly', 'img': '../../images/weekly.jpg', 'url': './weekly/weekly' },
       { 'name': '里程碑', 'ename': 'milestone', 'img': '../../images/milestone.jpg', 'url': './milestone/milestone' },
       { 'name': '训练计划', 'ename': 'program', 'img': '../../images/program.jpg', 'url': './program/program' },
-      { 'name': '建议', 'ename': 'advise', 'img': '../../images/advise.jpg', 'url': './advise/advise' },
+      { 'name': '教程', 'ename': 'course', 'img': '../../images/advise.jpg', 'url': './advise/advise' },
       // { 'name': '反馈', 'ename': 'feedback', 'img': '../../images/feedback.jpg', 'url': './feedback/feedback' },
       { 'name': '健身交流', 'ename': 'friends', 'img': '../../images/friends.jpg', 'url': './friends/friends' },
       { 'name': '设置', 'ename': 'config', 'img': '../../images/config.jpg', 'url': './config/config' },
@@ -49,13 +49,13 @@ Page({
     const ds = e.currentTarget.dataset
     const id = ds.id
     console.log(id)
-    if ([3].indexOf(id*1) != -1) {
-      wx.showToast({
-        title: '此功能暂未开放，敬请期待！',
-        duration: 2000
-      })
-      return
-    }
+    // if ([3].indexOf(id*1) != -1) {
+    //   wx.showToast({
+    //     title: '此功能暂未开放，敬请期待！',
+    //     duration: 2000
+    //   })
+    //   return
+    // }
     wx.navigateTo({
       url: this.data.options[id]['url'],
     })

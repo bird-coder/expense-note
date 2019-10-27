@@ -14,7 +14,8 @@
     "pages/mine/weekly/historyWeekly/index",
     "pages/mine/friends/friends",
     "pages/mine/program/plan/plan",
-    "pages/mine/program/default/default"
+    "pages/mine/program/default/default",
+    "pages/mine/advise/essay/essay"
   ],
   "window": {
     "backgroundTextStyle": "light",

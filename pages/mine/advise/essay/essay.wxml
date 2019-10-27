@@ -1,0 +1,2 @@
+<!--pages/mine/advise/essay/essay.wxml-->
+<rich-text nodes='{{nodes}}'></rich-text>

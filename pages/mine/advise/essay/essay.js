@@ -1,4 +1,4 @@
-// pages/mine/advise/advise.js
+// pages/mine/advise/essay/essay.js
 const app = getApp()
 
 Page({
@@ -7,29 +7,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-    cdn: 'https://ble.jltop.top/client/',
-    essays: [],
-    videos: []
-  },
-
-  checkEssay: function(e) {
-    const ds = e.currentTarget.dataset
-    wx.navigateTo({
-      url: './essay/essay?index='+ds.index,
-    })
+    nodes: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let that = this
-    if (app.globalData.course) this.setData({essays: app.globalData.course['essays'], videos: app.globalData.course['videos']})
-    else {
-      app.getCourse(function () {
-        that.setData({ essays: app.globalData.course['essays'], videos: app.globalData.course['videos']})
-      })
-    }
+    console.log(options)
+    let index = options.index
+    let essays = app.globalData.course['essays']
+    if (essays[index]) this.setData({ nodes: essays[index].content})
   },
 
   /**

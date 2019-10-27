@@ -94,6 +94,7 @@ App({
         that.getDaily()
         that.getWeekly()
         that.getConfig()
+        that.getCourse()
       },
       fail: function() {
         that.globalData.overdue = true
@@ -252,6 +253,14 @@ App({
       that.globalData.formIds = []
     }, 'POST')
   },
+  getCourse: function (cb) {
+    let that = this
+    let token = wx.getStorageSync('token')
+    that.wxRequest('getCourse', {token: token}, data => {
+      that.globalData.course = data.course
+      typeof cb == 'function' && cb()
+    })
+  },
   //获取配置
   getConfig: function () {
     let that = this
@@ -344,6 +353,7 @@ App({
     default_plans: null,
     configs: {},
     hasLogin: false,
+    course: null,
   },
   onShow: function() {
     console.log('应用前台显示')

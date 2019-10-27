@@ -1,3 +1,22 @@
 <!--pages/mine/advise/advise.wxml-->
-<video src='https://ble.jltop.top/video1.mp4'></video>
-<!-- <web-view src='https://ble.jltop.top/advise'></web-view> -->
+<!-- <video src='https://ble.jltop.top/video1.mp4'></video> -->
+<view class='header'>教程推荐</view>
+<view class='list'>
+  <view class='item' wx:for="{{essays}}" wx:key="index"
+    data-index='{{index}}'
+    bindtap='checkEssay'>
+    <image src='{{cdn}}{{item.img}}' />
+    <view>
+      <text class='title'>{{item.title}}</text>
+      <text>{{item.desc}}</text>
+    </view>
+  </view>
+</view>
+<!-- <view class='header'>视频教程</view>
+<view class='list_v'>
+  <view class='item_v' wx:for="{{videos}}" wx:key="index">
+    <image class='cover' src='{{cdn}}{{item.img}}' />
+    <image class='play' src='../../../images/play.png' />
+    <text>{{item.title}}</text>
+  </view>
+</view> -->
