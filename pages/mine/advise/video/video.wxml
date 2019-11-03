@@ -1,0 +1,2 @@
+<!--pages/mine/advise/video/video.wxml-->
+<video id='myvideo' src='{{cdn}}{{video}}' title='{{title}}' autoplay='true' enable-play-gesture='true' show-fullscreen-btn='{{false}}' bindplay='fullscreen' bindfullscreenchange='fullscreenChange'></video>

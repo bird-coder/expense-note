@@ -15,7 +15,8 @@
     "pages/mine/friends/friends",
     "pages/mine/program/plan/plan",
     "pages/mine/program/default/default",
-    "pages/mine/advise/essay/essay"
+    "pages/mine/advise/essay/essay",
+    "pages/mine/advise/video/video"
   ],
   "window": {
     "backgroundTextStyle": "light",

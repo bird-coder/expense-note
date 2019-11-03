@@ -1,4 +1,4 @@
-// pages/mine/advise/advise.js
+// pages/mine/advise/video/video.js
 const app = getApp()
 
 Page({
@@ -8,21 +8,22 @@ Page({
    */
   data: {
     cdn: 'https://ble.jltop.top/client/',
-    essays: [],
-    videos: []
+    video: '',
+    title: ''
   },
 
-  checkEssay: function(e) {
-    const ds = e.currentTarget.dataset
-    wx.navigateTo({
-      url: './essay/essay?index='+ds.index,
-    })
+  fullscreen: function () {
+    let that = this
+    this.video = wx.createVideoContext('myvideo', this)
+    setTimeout(function () {
+      that.video.requestFullScreen()
+    }, 100)
   },
 
-  checkVideo: function (e) {
-    const ds = e.currentTarget.dataset
-    wx.navigateTo({
-      url: './video/video?index=' + ds.index,
+  fullscreenChange: function (e) {
+    console.log(e.detail)
+    if (!e.detail.fullScreen) wx.navigateBack({
+      delta: 1
     })
   },
 
@@ -30,13 +31,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let that = this
-    if (app.globalData.course) this.setData({essays: app.globalData.course['essays'], videos: app.globalData.course['videos']})
-    else {
-      app.getCourse(function () {
-        that.setData({ essays: app.globalData.course['essays'], videos: app.globalData.course['videos']})
-      })
-    }
+    console.log(options)
+    let index = options.index
+    let videos = app.globalData.course['videos']
+    if (videos[index]) this.setData({ video: videos[index].url, title: videos[index].title })
   },
 
   /**
@@ -50,7 +48,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
   },
 
   /**

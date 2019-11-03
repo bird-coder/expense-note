@@ -1,0 +1,4 @@
+/* pages/mine/advise/video/video.wxss */
+#myvideo {
+  width: 100%;
+}

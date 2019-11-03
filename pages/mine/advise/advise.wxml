@@ -12,11 +12,13 @@
     </view>
   </view>
 </view>
-<!-- <view class='header'>视频教程</view>
+<view class='header'>视频教程</view>
 <view class='list_v'>
-  <view class='item_v' wx:for="{{videos}}" wx:key="index">
+  <view class='item_v' wx:for="{{videos}}" wx:key="index"
+    data-index='{{index}}'
+    bindtap='checkVideo'>
     <image class='cover' src='{{cdn}}{{item.img}}' />
     <image class='play' src='../../../images/play.png' />
     <text>{{item.title}}</text>
   </view>
-</view> -->
+</view>
